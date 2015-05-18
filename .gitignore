@@ -14,3 +14,33 @@ wp-content/wp-cache-config.php
 wp-content/themes/deshantz/node_modules
 wp-content/themes/deshantz/src/bower_components
 wp-content/themes/deshantz/.sass-cache
+
+.project
+.settings
+.classpath
+.sass-cache/
+
+# OS generated files #
+######################
+*/.DS_Store
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
