@@ -1,0 +1,81 @@
+/**
+ * partials/nav
+ * ---
+ * Menus
+ */
+
+
+
+// Main Menu
+.nav-main {
+  position: relative;
+  z-index: 100;
+  float:none;
+  text-align: center;
+ 
+  @media (min-width: $screen-sm) {
+    float: right;
+    text-align: left;
+  }
+}
+
+
+
+.nav-main ul,
+.nav-footer ul {
+  margin:0;
+  padding:0;
+
+  li {
+    list-style-type: none;
+    display: inline;   
+    padding:0 15px;
+
+    &.divider {
+      display:block;
+      padding:0;
+      margin-top:20px;
+      @media (min-width: $screen-sm) {
+        display:none;
+        margin:0;
+      }
+    }
+  }
+}
+
+.nav-main a,
+.nav-footer a {
+  font-family: $font-family-headings;
+  color: #fff;
+  font-weight: 500;
+  @include transition();
+
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+// Footer Menu
+.nav-footer ul {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav-footer a {
+  color: lighten($footer-bg, 25%);
+}
+
+.nav-footer-social a {
+  font-size:18px;
+}
+
+ul.nav-footer-social li {
+  padding: 0 10px;
+}
+
+.menu {}
+
+.sub-menu {}
+
+.menu-item {}

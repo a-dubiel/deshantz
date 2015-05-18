@@ -1,0 +1,493 @@
+/**
+ * partials/layout
+ * ---
+ */
+
+ // Home
+
+ .home-section {
+  @include clearfix();
+}
+
+.home-logo img {
+  width:300px;
+  height: auto;
+  margin-bottom:1.5rem;
+  @media (min-width: $screen-sm) {
+    width:500px;
+    margin-bottom:0;
+  }
+}
+
+.box {
+  display: block;
+  width:100%;
+
+  @media (min-width: $screen-sm) {
+    float: left;
+    width: 50%;
+    min-height:400px;
+  }
+}
+
+.box-image {
+  background-size:cover;
+  background-position: 50% 50%;
+  height:200px;
+  position: relative;
+
+  @media (min-width: $screen-sm) {
+    width: 50%;
+  }
+}
+
+.box-image-overlay {
+  position: absolute;
+  width:100%;
+  height:100%;
+  text-align: center;
+  background-color: rgba($primary,0.9);
+  opacity:0;
+  @include transition();
+
+  span {
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    display:block;
+    letter-spacing: 0.05em;
+    font-weight:700;
+    color: #fff;
+    position: relative;
+    top:50%;
+    opacity:0;
+    transform: translateY(10%);
+    @include transition(all 0.3s ease-in-out 0.1s);
+
+  }
+}
+
+.overlay-link:hover {
+
+  .box-image-overlay {
+    opacity:1;
+
+    span {
+      opacity:1;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.box-text {
+  padding:20px;
+  display: table;
+
+  @media (min-width: $screen-sm) {
+    padding:30px;
+  }
+
+  @media (min-width: $screen-md) {
+    padding:50px;
+  }
+}
+
+.box-content {
+  max-width:600px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.intro-paragraph {
+  margin-bottom:1.5rem;
+}
+
+.title {
+  font-family: $font-family-headings;
+  font-weight: 700;
+  font-size: 1 * $scale * 1rem;
+  letter-spacing: -0.01em;
+  margin:0.2rem 0 0 0;
+}
+
+.title a {
+  color: $heading-color;
+  @include transition();
+  
+  &:hover {
+    color: $primary;
+  }
+}
+
+.subtitle {
+  font-family: $font-family-headings;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size:0.6 * $scale * 1rem;
+  font-weight:500;
+  color: lighten($heading-color, 50%);
+}
+
+.read-more-link {
+  font-family: $font-family-headings;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight:700;
+  color: $primary;
+
+
+  &:hover {
+    @include transition();
+    color: $text-color;
+  }
+}
+
+.box-author-meta {
+  height:50px;
+  width:100%;
+  margin-bottom: 1.5rem;
+
+  .avatar {
+    display:block;
+    border-radius:50%;
+    float:left;
+    margin-right:10px;
+  }
+
+  p {
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 80%;
+    line-height:1rem;
+    position: relative;
+    top:50%;
+    transform:translateY(-50%);
+  }
+}
+
+.box-twitter {
+  height:250px;
+  width:100%;
+  float:left;
+  position:relative;
+
+  @media (min-width: $screen-sm) {
+    width:33.3333%;
+    height:0;
+    padding-bottom:33.33333%;
+  }
+
+  @media (min-width: $screen-md) {
+    width:25%;
+    height:0;
+    padding-bottom:25%;
+  }
+
+  background: $twitter;
+  text-align: center;
+
+
+  .title,
+  .subtitle,
+  p,
+  span,
+  a {
+    color: #fff;
+  }
+}
+
+.twitter-content {
+  width:250px;
+  height:250px;
+  margin:auto;
+  position: absolute;
+  top:0;left:0;right:0;bottom:0;
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  p {
+    font-style: italic;
+    margin: 1.5rem 0;
+    padding: 0px;
+  }
+
+  time {
+    color: lighten($twitter,25%)
+  }
+
+  .tweet-details {
+    margin-bottom: 0;
+  }
+}
+
+.twitter-container {
+  top:50%;
+  position:relative;
+  transform: translateY(-50%)
+}
+
+
+.instagram-tile {
+  display:block;
+  position: relative;
+  width:33.333333%;
+  height:0;
+  padding-bottom:33.333333%;
+  float:left;
+  background-size:cover;
+  background-position: 50% 50%;
+
+  @media (min-width: $screen-sm) {
+    width:50%;
+    height:0;
+    padding-bottom:50%;
+
+    &:nth-child(3) {
+      display:none;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    width:33.3333333%;
+   padding-bottom:33.3333333%;
+
+   &:nth-child(3) {
+    display:block;
+  }
+}
+
+&:hover {
+  .instagram-overlay {
+    opacity:1;
+
+    span {
+      opacity:1;
+      transform: translateY(-50%);
+    }
+  }
+}
+}
+
+.instagram-overlay {
+  position: absolute;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background: rgba($primary, 0.9);
+  color: #fff;
+  text-align: center;
+  opacity:0;
+
+  @include transition();
+
+  span {
+    display: block;
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    font-weight:700;
+    position: relative;
+    top:50%;
+    opacity:0;
+    transform: translateY(10%);
+    @include transition(all 0.3s ease-in-out 0.1s);
+  }
+}
+
+.box-instagram {
+  position: relative;
+  width:100%;
+  float:left;
+
+  @media (min-width: $screen-sm) {
+    width:66.6666%;
+  } 
+
+  @media (min-width: $screen-md) {
+    width:75%;
+  } 
+}
+
+.box-instagram-title {
+  position: absolute;
+  margin: auto;
+  top:10px;
+  left: 0;
+  right: 0;
+  z-index:100;
+  text-align: center;
+
+  @media (min-width: $screen-sm) {
+    left:20px;
+    right: auto;
+    margin:0;
+    text-align: left;
+  } 
+
+  .title,
+  .subtitle {
+    color: #fff;  
+  }
+}
+
+.section-header {
+  margin: 0 auto 20px;
+  width:90%;
+
+  @media (min-width: $screen-sm) {
+    width:40%;  
+  }
+}
+
+
+   
+.home-section-padding {
+  padding: 40px 0;
+}
+
+
+.logo-list {
+  margin:0 auto 40px;
+  padding:0;
+  width:100%;
+
+
+  @media (min-width: $screen-sm) {
+    width:720px;
+    text-align:center;
+  }
+
+  @media (min-width: $screen-md) {
+    width:80%;
+  }
+
+
+  li {
+    list-style-type:none;
+    display:inline;
+    line-height:100px;
+  }
+
+
+  a {
+    display:inline-block;
+    width:180px;
+    height:100px;
+    text-indent:-9999px;
+    @include transition();
+
+    &:hover {
+      opacity:0.5;
+    }
+
+     @media (max-width: $screen-xs) {
+        width:160px;
+        background-size: 160px !important;
+    }
+  }
+
+  $logos: "cooking", "esquire", "foodwine", "huffington", "pittsburghmag", "yahoo", "thrillist", "travel", "trib", "usatoday";
+
+  @each $logo in $logos {
+    .logo-#{$logo} {
+      background: url("./img/logo/#{$logo}.png") no-repeat;
+      @include image-2x("./img/logo/#{$logo}@2x.png", 180px, 100px);
+    }
+  }
+}
+
+.more-info {
+  font-family: $font-family-headings;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight:700;
+  color: $primary;
+  display:inline-block;
+}
+
+.box-restaurant {
+  position:relative;
+  width:100%;
+  float:left;
+  height:300px;
+  background-size:cover;
+  background-position:50% 50%;
+  text-align: center;
+  overflow:hidden;
+
+  &:before {
+    content: '';
+    display:block;
+    position: absolute;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0.4);
+    width:100%;
+    height:100%;
+    z-index:0;
+  }
+
+
+  @media (min-width: $screen-sm) {
+    width:33.3333%;
+    padding-bottom:33.3333%;
+    height:0;
+  }
+
+  .subtitle {
+    margin:0;
+  }
+
+  .title,
+  .subtitle {
+    color: #fff;
+  }
+}
+
+.box-restaurant:hover .box-restaurant-content {
+  span {
+    opacity:1;
+  }
+
+  .title,
+  .subtitle,
+  span {
+    transform: translateY(0);
+  }
+}
+
+.box-restaurant-container {
+  width:90%;
+  height:90%;
+  position:absolute;
+  margin:auto;
+  top:0;left:0;right:0;bottom:0;
+}
+
+.box-restaurant-content {
+  position:relative;
+  top:50%;
+  transform: translateY(-50%);
+
+  .title,
+  .subtitle {
+    transform: translateY(50%);
+    @include transition();
+  }
+
+  span {
+    @include transition();
+    opacity:0;
+    transform: translateY(50%);
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+/**
+ * modules/variables
+ * ---
+ */
+
+/**
+ * Typography
+ */
+
+$font-family-base:      "adelle", Georgia, Times, 'Times New Roman', serif;
+$font-family-headings:  "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+$font-size-base:        140%;
+$line-height-base:      1.5;
+// Typesetting variables. Edit these!
+$baseFontSize:          14; // in pixels. This would result in 22px on desktop
+$baseLineHeight:        1.5; // how large the line height is as a multiple of font size
+$leading:               $baseLineHeight * 1rem;
+// Rate of growth for headings
+// I actually like this to be slightly smaller then the leading. Makes for tight headings.
+$scale:                 1.414;
+
+
+/**
+ * Colors
+ */
+$primary:       #ECA80C;
+$text-color:    #737373;
+$heading-color: #333;
+$body-bg:       #fff;
+$footer-bg:     #1E1E1E;
+$selection-bg:  #04A4CC;
+$twitter:       #55acee;
+
+
+/**
+ * Grid
+ */
+
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+
+$padding-horizontal-base: 5px;
+$padding-vertical-base: 5px;
+$margin-horizontal-base: 5px;
+$margin-vertical-base: 5px;
+$margin-horizontal-large: 15px;
+$margin-vertical-large: 15px;
