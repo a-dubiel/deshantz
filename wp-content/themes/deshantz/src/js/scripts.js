@@ -3,16 +3,17 @@
 
   var $win = $(window);
 
-	$(function () {
-		resizeHeader();
+  $(function () {
+    resizeHeader();
     initInstafeed();
-	});
+    scrollFade($(".intro"), 0.5, 0);
+  });
 
   $win.on("resize", function () {      
     clearTimeout($win.resizedFinished);
     $win.resizedFinished = setTimeout(function(){
-       resizeHeader();
-    }, 250);
+     resizeHeader();
+   }, 250);
   });
 
   function resizeHeader() {
@@ -20,6 +21,7 @@
   }
 
   function initInstafeed() {
+
     var feed = new Instafeed({
       get: "user",
       clientId: "a0660f0c72874245ac45bb6974520a07",
@@ -32,6 +34,29 @@
     });
     feed.run();
   }  
+
+  function scrollFade($element, friction, offset) {
+
+    var parentHeight = $element.parent().outerHeight() * 0.5;
+    var previousOpacity = Infinity;
+
+    $win.scroll(function() {
+      var scrollTop = Math.max(0, $win.scrollTop())
+      , yOffset   = ($element.outerHeight() * -0.5) + scrollTop * friction
+      , opacity   = 1 - (scrollTop / parentHeight - (parentHeight * offset));
+
+      if (opacity < 0 && previousOpacity < 0) { return; }
+
+      $element.css({
+        transform: 'translate3d(0px,'+ yOffset +'px, 0)',
+        opacity: opacity
+      });
+
+
+      previousOpacity = opacity;
+    });
+  }
+
 
 
 } ( this, jQuery ));

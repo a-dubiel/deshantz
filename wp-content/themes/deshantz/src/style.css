@@ -1,14 +1,12 @@
 /*!
- * Theme Name: HTML5 Blank
- * Theme URI: http://html5blank.com
- * Description: HTML5 Blank WordPress Theme
- * Version: 1.5.0
- * Author: Todd Motto (@toddmotto)
- * Author URI: http://toddmotto.com
- * Tags: Blank, HTML5, CSS3
+ * Theme Name: Deshantz Theme
+ * Theme URI: http://www.rickdeshantz.com
+ * Description: Rick Deshantz Restaruant Group
+ * Version: 0.5
+ * Author: Andrzej Dubiel
+ * Author URI: http://dubiel.me
+ * Tags: Food, Restaurant, Pittsburgh
  *
- * License: MIT
- * License URI: http://opensource.org/licenses/mit-license.php
  */
 /**
  * styles.scss
@@ -128,13 +126,13 @@ input[type="search"] {
 }
 
 ::-moz-selection {
-  background-color: #04A4CC;
+  background-color: #ECA80C;
   color: #fff;
   text-shadow: none;
 }
 
 ::selection {
-  background-color: #04A4CC;
+  background-color: #ECA80C;
   color: #fff;
   text-shadow: none;
 }
@@ -259,12 +257,12 @@ code {
  * Alignment
  */
 .alignnone {
-  margin: 5px 15px 15px 0;
+  margin: 20px auto;
 }
 
 .aligncenter {
   display: block;
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .alignright {
@@ -283,8 +281,8 @@ code {
  */
 .wp-caption {
   background: #fff;
-  border: thin solid #F0F0F0;
-  max-width: 95%;
+  max-width: 100%;
+  margin: 20px auto;
   padding: 5px 5px;
   text-align: center;
 }
@@ -300,8 +298,9 @@ code {
 .wp-caption .wp-caption-text,
 .gallery-caption {
   margin: 0;
-  padding: 0 5px 5px;
-  font-size: 140%;
+  padding: 10px 0;
+  font-style: italic;
+  color: #b3b3b3;
   line-height: 1.5;
 }
 
@@ -1504,6 +1503,7 @@ code {
  */
 .header {
   background-size: cover;
+  background-attachment: fixed;
   padding-top: 20px;
   width: 100%;
   overflow: hidden;
@@ -1769,6 +1769,10 @@ code {
   display: inline;
   padding: 0 15px;
 }
+.nav-main ul li.current-menu-item a,
+.nav-footer ul li.current-menu-item a {
+  color: #ECA80C;
+}
 .nav-main ul li.divider,
 .nav-footer ul li.divider {
   display: block;
@@ -2015,7 +2019,7 @@ ul.nav-footer-social li {
   margin-bottom: 1.5rem;
 }
 
-.title {
+.title, .page-content h1, .page-content h2, .page-content h3 {
   font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
   font-weight: 700;
   font-size: 1.414rem;
@@ -2023,13 +2027,13 @@ ul.nav-footer-social li {
   margin: 0.2rem 0 0 0;
 }
 
-.title a {
+.title a, .page-content h1 a, .page-content h2 a, .page-content h3 a {
   color: #333;
   -webkit-transition: all 0.3s ease-in-out 0s;
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
-.title a:hover {
+.title a:hover, .page-content h1 a:hover, .page-content h2 a:hover, .page-content h3 a:hover {
   color: #ECA80C;
 }
 
@@ -2101,7 +2105,7 @@ ul.nav-footer-social li {
     padding-bottom: 25%;
   }
 }
-.box-twitter .title,
+.box-twitter .title, .box-twitter .page-content h1, .page-content .box-twitter h1, .box-twitter .page-content h2, .page-content .box-twitter h2, .box-twitter .page-content h3, .page-content .box-twitter h3,
 .box-twitter .subtitle,
 .box-twitter p,
 .box-twitter span,
@@ -2243,7 +2247,7 @@ ul.nav-footer-social li {
     text-align: left;
   }
 }
-.box-instagram-title .title,
+.box-instagram-title .title, .box-instagram-title .page-content h1, .page-content .box-instagram-title h1, .box-instagram-title .page-content h2, .page-content .box-instagram-title h2, .box-instagram-title .page-content h3, .page-content .box-instagram-title h3,
 .box-instagram-title .subtitle {
   color: #fff;
 }
@@ -2442,17 +2446,17 @@ ul.nav-footer-social li {
 .box-restaurant .subtitle {
   margin: 0;
 }
-.box-restaurant .title,
+.box-restaurant .title, .box-restaurant .page-content h1, .page-content .box-restaurant h1, .box-restaurant .page-content h2, .page-content .box-restaurant h2, .box-restaurant .page-content h3, .page-content .box-restaurant h3,
 .box-restaurant .subtitle {
   color: #fff;
 }
 
-.box-restaurant:hover .box-restaurant-content span {
+.box-restaurant:hover .box-restaurant-content .read-more-link {
   opacity: 1;
 }
-.box-restaurant:hover .box-restaurant-content .title,
+.box-restaurant:hover .box-restaurant-content .title, .box-restaurant:hover .box-restaurant-content .page-content h1, .page-content .box-restaurant:hover .box-restaurant-content h1, .box-restaurant:hover .box-restaurant-content .page-content h2, .page-content .box-restaurant:hover .box-restaurant-content h2, .box-restaurant:hover .box-restaurant-content .page-content h3, .page-content .box-restaurant:hover .box-restaurant-content h3,
 .box-restaurant:hover .box-restaurant-content .subtitle,
-.box-restaurant:hover .box-restaurant-content span {
+.box-restaurant:hover .box-restaurant-content .read-more-link {
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
@@ -2474,7 +2478,7 @@ ul.nav-footer-social li {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.box-restaurant-content .title,
+.box-restaurant-content .title, .box-restaurant-content .page-content h1, .page-content .box-restaurant-content h1, .box-restaurant-content .page-content h2, .page-content .box-restaurant-content h2, .box-restaurant-content .page-content h3, .page-content .box-restaurant-content h3,
 .box-restaurant-content .subtitle {
   -webkit-transform: translateY(50%);
   transform: translateY(50%);
@@ -2482,11 +2486,87 @@ ul.nav-footer-social li {
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
-.box-restaurant-content span {
+.box-restaurant-content .read-more-link {
   -webkit-transition: all 0.3s ease-in-out 0s;
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
   opacity: 0;
   -webkit-transform: translateY(50%);
   transform: translateY(50%);
+}
+
+.page-content {
+  padding: 50px 0;
+}
+@media (min-width: 768px) {
+  .page-content p, .page-content h1, .page-content h2, .page-content h3, .page-content h4, .page-content h5, .page-content h6 {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 992px) {
+  .page-content p, .page-content h1, .page-content h2, .page-content h3, .page-content h4, .page-content h5, .page-content h6 {
+    padding: 0 75px;
+  }
+}
+.page-content h1, .page-content h2, .page-content h3 {
+  line-height: 1.6968rem;
+}
+.page-content ul, .page-content ol {
+  margin: 0;
+  padding: 0;
+}
+.page-content blockquote,
+.page-content blockquote p {
+  font-size: 1.9796rem;
+  font-style: italic;
+  margin: 20px 0;
+  text-align: center;
+  line-height: 2.828rem;
+  color: #333;
+}
+.page-content blockquote p,
+.page-content blockquote p p {
+  padding: 0;
+}
+
+.section-gray {
+  background-color: #F0F0F0;
+}
+
+.section-padding {
+  padding: 25px 0;
+}
+
+.post-excerpt {
+  width: 100%;
+  margin-bottom: 20px;
+  min-height: 200px;
+  background: #fff;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.post-category {
+  margin: 0;
+  padding: 10px 0 10px 20px;
+}
+
+.post-content {
+  padding: 20px;
+}
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-thumbnail {
+  overflow: hidden;
+}
+.post-thumbnail img {
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -khtml-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.post-excerpt:hover .post-thumbnail img {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }

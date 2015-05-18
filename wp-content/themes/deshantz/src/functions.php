@@ -32,6 +32,7 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
     add_image_size('hero-image', 1400, '', true);
+    add_image_size('post-thumbnail', 400, 200, true);
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(
     'default-color' => 'FFF',
@@ -39,7 +40,7 @@ if (function_exists('add_theme_support'))
     ));*/
 
     //remove auto p tags
-    remove_filter( 'the_content', 'wpautop' );
+   // remove_filter( 'the_content', 'wpautop' );
 
     // Add Support for Custom Header - Uncomment below if you're going to use
     /*add_theme_support('custom-header', array(
@@ -79,8 +80,6 @@ function hero_image()
     }
 
     return $image_src;
-
-
 }
 
 // HTML5 Blank navigation
@@ -101,7 +100,7 @@ function nav_main()
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
+        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="http://www.twitter.com/rickdeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="https://www.instagram.com/rick_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
         'depth'           => 0,
         'walker'          => ''
         )
@@ -442,7 +441,7 @@ add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditi
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
-add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
+//add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -484,47 +483,6 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
 
-/*------------------------------------*\
-    Custom Post Types
-\*------------------------------------*/
-
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-function create_post_type_html5()
-{
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
 
 /*------------------------------------*\
     ShortCode Functions
@@ -541,3 +499,109 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 {
     return '<h2>' . $content . '</h2>';
 }
+
+/*------------------------------------*\
+    Meta Box
+\*------------------------------------*/
+
+/**
+ * Adds a box to the main column on the Post and Page edit screens.
+ */ 
+function myplugin_add_meta_box() {
+
+        add_meta_box(
+            'myplugin_sectionid',
+            __( 'Hero Section', 'myplugin_textdomain' ),
+            'myplugin_meta_box_callback',
+            'page'
+        );
+
+}
+add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+
+/**
+ * Prints the box content.
+ * 
+ * @param WP_Post $post The object for the current post/page.
+ */
+function myplugin_meta_box_callback( $post ) {
+
+    // Add a nonce field so we can check for it later.
+    wp_nonce_field( 'myplugin_meta_box', 'myplugin_meta_box_nonce' );
+
+    /*
+     * Use get_post_meta() to retrieve an existing value
+     * from the database and use the value for the form.
+     */
+    $title = get_post_meta( $post->ID, '_hero_title', true );
+    $subtitle = get_post_meta( $post->ID, '_hero_subtitle', true );
+
+    echo '<label for="hero_title">';
+    _e( 'Title', 'myplugin_textdomain' );
+    echo '</label><br />';
+    echo '<input type="text" id="hero_title" name="hero_title" value="' . esc_attr( $title ) . '" size="60" /><br />';
+    echo '<label for="hero_subtitle">';
+    _e( 'Subtitle', 'myplugin_textdomain' );
+    echo '</label><br />';
+    echo '<textarea id="hero_subtitle" name="hero_subtitle" style="min-width:75%; min-height: 200px">';
+    echo esc_attr( $subtitle );
+    echo '</textarea>';
+}
+
+/**
+ * When the post is saved, saves our custom data.
+ *
+ * @param int $post_id The ID of the post being saved.
+ */
+function myplugin_save_meta_box_data( $post_id ) {
+
+    /*
+     * We need to verify this came from our screen and with proper authorization,
+     * because the save_post action can be triggered at other times.
+     */
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['myplugin_meta_box_nonce'] ) ) {
+        return;
+    }
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $_POST['myplugin_meta_box_nonce'], 'myplugin_meta_box' ) ) {
+        return;
+    }
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Check the user's permissions.
+    if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ) {
+            return;
+        }
+
+    } else {
+
+        if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+        }
+    }
+
+    /* OK, it's safe for us to save the data now. */
+    
+    // Make sure that it is set.
+    if ( ! isset( $_POST['hero_subtitle']) && ! isset( $_POST['hero_title'] ) ) {
+        return;
+    }
+
+    // Sanitize user input.
+    $hero_title = sanitize_text_field( $_POST['hero_title'] );
+    $hero_subtitle = sanitize_text_field( $_POST['hero_subtitle'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, '_hero_title', $hero_title);
+    update_post_meta( $post_id, '_hero_subtitle', $hero_subtitle );
+}
+add_action( 'save_post', 'myplugin_save_meta_box_data' );

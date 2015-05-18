@@ -23,13 +23,14 @@ $scale:                 1.414;
 /**
  * Colors
  */
-$primary:       #ECA80C;
-$text-color:    #737373;
-$heading-color: #333;
-$body-bg:       #fff;
-$footer-bg:     #1E1E1E;
-$selection-bg:  #04A4CC;
-$twitter:       #55acee;
+$primary:         #ECA80C;
+$text-color:      #737373;
+$heading-color:   #333;
+$body-bg:         #fff;
+$footer-bg:       #1E1E1E;
+$selection-bg:    $primary;
+$section-gray-bg: #F0F0F0;
+$twitter:         #55acee;
 
 
 /**

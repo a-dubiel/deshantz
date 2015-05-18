@@ -19,8 +19,6 @@
   }
 }
 
-
-
 .nav-main ul,
 .nav-footer ul {
   margin:0;
@@ -30,6 +28,10 @@
     list-style-type: none;
     display: inline;   
     padding:0 15px;
+
+    &.current-menu-item a {
+      color: $primary;
+    }
 
     &.divider {
       display:block;

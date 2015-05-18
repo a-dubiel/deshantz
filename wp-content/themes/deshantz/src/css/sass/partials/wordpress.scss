@@ -13,12 +13,12 @@
  */
 
 .alignnone {
-  margin: $margin-vertical-base $margin-horizontal-large $margin-vertical-large 0;
+  margin: 20px auto;
 }
 
 .aligncenter {
   display: block;
-  margin: $margin-vertical-base auto;
+  margin: 10px auto;
 }
 
 .alignright {
@@ -39,8 +39,8 @@
 
 .wp-caption {
   background: $body-bg;
-  border: thin solid #F0F0F0;
-  max-width: 95%;
+  max-width: 100%;
+  margin: 20px auto;
   padding: $padding-horizontal-base $padding-vertical-base;
   text-align: center;
 
@@ -57,7 +57,8 @@
 .wp-caption .wp-caption-text,
 .gallery-caption {
   margin: 0;
-  padding: 0 $padding-horizontal-base $padding-vertical-base;
-  font-size: $font-size-base;
+  padding: 10px 0;
+  font-style: italic;
+  color: lighten($heading-color, 50%);
   line-height: $line-height-base;
 }

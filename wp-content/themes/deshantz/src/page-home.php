@@ -1,5 +1,7 @@
 <?php /* Template Name: Home Page */ get_header(); ?>
 
+<main role="main">
+
 <!-- about -->
 <section class="home-section">
  <div class="box box-image visible-xs" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/home-about.jpg') "></div>
@@ -19,7 +21,7 @@
 <!-- latest post -->
 <section class="home-section">
   <?php 
-  $latest_post = new WP_Query( 'showposts=1' ); 
+  $latest_post = new WP_Query( array('showposts' => 1, 'ignore_sticky_posts' => true) ); 
   while ($latest_post->have_posts()) : $latest_post->the_post();
   $thumb_id = get_post_thumbnail_id($post->ID);
   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
@@ -42,7 +44,7 @@
         <?php else: ?>
           <?php echo get_avatar(get_the_author_meta('email'), 50) ?>
         <?php endif; ?>
-        <p>By <?php the_author() ?> <br /><?php the_date() ?></p>
+        <p>By <?php the_author() ?> <br /><time datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time></p>
       </footer>
       <a href="<?php the_permalink() ?>" class="read-more-link">Read more</a>
 
@@ -104,37 +106,36 @@
 <!-- restaurants -->
 <section class="home-section">
   
-  <a href="<?php echo site_url() ?>/restaurants">
+
     <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/butcher-and-rye.jpg')">
       <div class="box-restaurant-container">
         <div class="box-restaurant-content">
           <h4 class="title">Butcher and Rye</h4>
           <p class="subtitle">Pittsburgh, PA</p>
-          <span class="more-info">More Info</span>
+          <a class="read-more-link" href="<?php echo site_url() ?>/restaurants">More Info</a>
         </div>
       </div>
     </div>
-  </a>
+  
 
-  <a href="<?php echo site_url() ?>/restaurants">
     <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/meat-and-potatoes.jpg')">
       <div class="box-restaurant-container">
         <div class="box-restaurant-content">
           <h4 class="title">Meat and Potatoes</h4>
           <p class="subtitle">Pittsburgh, PA</p>
-          <span class="more-info">More Info</span>
+          <a class="read-more-link" href="<?php echo site_url() ?>/restaurants">More Info</a>
         </div>
       </div>
     </div>
-  </a>
 
-  <a href="<?php echo site_url() ?>/restaurants">
+
+
     <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/tako.jpg')">
       <div class="box-restaurant-container">
         <div class="box-restaurant-content">
           <h4 class="title">Täko</h4>
           <p class="subtitle">Pittsburgh, PA</p>
-          <span class="more-info">More Info</span>
+          <a class="read-more-link" href="<?php echo site_url() ?>/restaurants">More Info</a>
         </div>
       </div>
     </div>
@@ -142,5 +143,7 @@
 
 </section>
 <!-- /restaurants -->
+
+</main>
 
 <?php get_footer(); ?>

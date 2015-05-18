@@ -61,9 +61,21 @@
             <!-- intro -->
             <?php if(is_front_page()): ?>
                 <h1 class="home-logo"><img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Richard Deshantz Restaurant Group"></h1>
-            
+            <?php elseif(is_page()): ?>
+                  <?php 
+                    $title = get_post_meta( get_the_ID(), '_hero_title', true ); 
+                    $subtitle = get_post_meta( get_the_ID(), '_hero_subtitle', true );
+                  ?>
+
+                  <?php if($title): ?>
+                      <h1><?php echo $title ?></h1>
+                      <p><?php echo $subtitle ?></p>
+                  <?php else: ?>
+                        kurwa?
+                  <?php endif; ?>
+
             <?php else: ?>
-              nie kurwa
+                pusto
             <?php endif; ?>
             <!-- /intro -->
             </div>
