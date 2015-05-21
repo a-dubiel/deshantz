@@ -86,7 +86,7 @@ html {
 }
 
 body {
-  color: #737373;
+  color: #5a5a5a;
   background-color: #fff;
 }
 
@@ -96,7 +96,7 @@ img {
 }
 
 a {
-  color: #737373;
+  color: #5a5a5a;
   text-decoration: none;
 }
 a:focus, a:hover {
@@ -219,6 +219,10 @@ th {
 /* Code blocks */
 code {
   vertical-align: bottom;
+}
+
+address {
+  font-style: normal;
 }
 
 /* Leading paragraph text */
@@ -1487,6 +1491,7 @@ code {
 .header {
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
   padding-top: 20px;
   width: 100%;
   overflow: hidden;
@@ -2018,7 +2023,7 @@ ul.nav-footer-social li {
   -ms-transition: all 0.3s ease-in-out 0s;
   -o-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
-  color: #737373;
+  color: #5a5a5a;
 }
 
 .box-author-meta {
@@ -2539,6 +2544,245 @@ ul.nav-footer-social li {
 
 .post-excerpt:hover .post-thumbnail img {
   transform: scale(1.05);
+}
+
+.section-restaurants {
+  padding: 20px 0;
+}
+@media (min-width: 768px) {
+  .section-restaurants {
+    padding: 50px 0;
+  }
+}
+@media (min-width: 992px) {
+  .section-restaurants {
+    padding: 100px 0;
+  }
+}
+
+.box-restaurant-big {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  margin-bottom: 80px;
+}
+.box-restaurant-big:hover .restaurant-cover img {
+  transform: scale(1.05);
+}
+
+.restaurant-cover {
+  overflow: hidden;
+}
+.restaurant-cover:before, .restaurant-cover:after {
+  content: " ";
+  display: table;
+}
+.restaurant-cover:after {
+  clear: both;
+}
+.restaurant-cover img {
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -khtml-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -ms-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.restaurant-info {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .restaurant-info {
+    padding: 50px;
+  }
+}
+.restaurant-info:before, .restaurant-info:after {
+  content: " ";
+  display: table;
+}
+.restaurant-info:after {
+  clear: both;
+}
+
+.restaurant-details,
+.restaurant-contact {
+  float: left;
+}
+
+.restaurant-details {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+@media (min-width: 768px) {
+  .restaurant-details {
+    width: 40%;
+    margin: 0;
+  }
+}
+
+.restaurant-logo {
+  width: 220px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.restaurant-logo.butcher-and-rye-logo {
+  background-image: url("./img/butcher-and-rye-logo.png");
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .restaurant-logo.butcher-and-rye-logo {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url("./img/butcher-and-rye-logo@2x.png");
+    background-size: 220px 100px;
+  }
+}
+.restaurant-logo.meat-and-potatoes-logo {
+  background-image: url("./img/meat-and-potatoes-logo.png");
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .restaurant-logo.meat-and-potatoes-logo {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url("./img/meat-and-potatoes-logo@2x.png");
+    background-size: 220px 100px;
+  }
+}
+.restaurant-logo.tako-logo {
+  background-image: url("./img/tako-logo.png");
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .restaurant-logo.tako-logo {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url("./img/tako-logo@2x.png");
+    background-size: 220px 100px;
+  }
+}
+
+.restaurant-contact {
+  width: 100%;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+@media (min-width: 768px) {
+  .restaurant-contact {
+    width: 60%;
+  }
+}
+.restaurant-contact ul {
+  display: block;
+  padding: 0;
+  list-style-type: none;
+  width: 170px;
+  height: auto;
+  margin: 10px auto 0;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -khtml-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -ms-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+@media (min-width: 480px) {
+  .restaurant-contact ul {
+    width: 340px;
+    height: 150px;
+  }
+}
+.restaurant-contact li {
+  float: left;
+  width: 170px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+.restaurant-contact li a {
+  font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.8484rem;
+  letter-spacing: 0.05em;
+}
+.restaurant-contact li a:hover .fa {
+  border-color: #ECA80C;
+  color: #ECA80C;
+}
+.restaurant-contact .fa {
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid silver;
+  color: #8d8d8d;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 0.9898rem;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -khtml-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -ms-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+.restaurant-contact .fa.fa-mobile {
+  font-size: 1.1312rem;
+}
+
+.restaurant-accolades {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -khtml-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -ms-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+.restaurant-accolades:before, .restaurant-accolades:after {
+  content: " ";
+  display: table;
+}
+.restaurant-accolades:after {
+  clear: both;
+}
+.restaurant-accolades p {
+  margin: 1rem 0;
+}
+.restaurant-accolades p > a {
+  text-decoration: underline;
+}
+
+.box-restaurant-big.flip .restaurant-accolades {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 0 20px 20px;
+}
+@media (min-width: 768px) {
+  .box-restaurant-big.flip .restaurant-accolades {
+    padding: 0 50px 50px;
+  }
+}
+
+.separator {
+  margin: 0 auto;
+  width: 95%;
+  position: relative;
+}
+.separator .mask {
+  overflow: hidden;
+  height: 20px;
+}
+.separator .mask:after {
+  content: '';
+  display: block;
+  margin: -25px auto 0;
+  width: 100%;
+  height: 25px;
+  border-radius: 125px / 25px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
 }
 
 /*# sourceMappingURL=style.css.map */

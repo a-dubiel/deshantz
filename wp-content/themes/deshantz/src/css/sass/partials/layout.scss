@@ -566,6 +566,210 @@
   }
 }
 
+// Restaurants
+
+.section-restaurants {
+  padding:20px 0;
+  @media (min-width: $screen-sm) {
+      padding: 50px 0;
+  }
+
+  @media (min-width: $screen-md) {
+      padding: 100px 0;
+  }
+ 
+}
+
+.box-restaurant-big {
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.15);
+    background-color: #fff;
+    margin-bottom:80px;
+
+    &:hover {
+      .restaurant-cover img {
+        transform: scale(1.05);
+      }
+    }
+}
+
+.restaurant-cover {
+  @include clearfix(); 
+  overflow:hidden; 
+  
+  img {
+    width:100%;
+    height:auto;
+    @include transition();
+  }
+}
+
+.restaurant-info {
+  padding:20px;
+   @media (min-width: $screen-sm) {
+      padding:50px;
+   }
+  @include clearfix(); 
+}
+
+.restaurant-details,
+.restaurant-contact {
+  float:left; 
+}
+
+.restaurant-details {
+  width:100%;
+  text-align: center;
+  margin: 20px 0;
+
+
+  @media (min-width: $screen-sm) {
+      width:40%;
+      margin:0;
+  }
+
+}
+
+.restaurant-logo {
+  width:220px;
+  height:100px;
+  margin: 0 auto 20px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  
+
+  &.butcher-and-rye-logo {
+    background-image: url('./img/butcher-and-rye-logo.png');
+    @include image-2x("./img/butcher-and-rye-logo@2x.png", 220px, 100px);
+  }
+
+  &.meat-and-potatoes-logo { 
+    background-image: url('./img/meat-and-potatoes-logo.png');
+    @include image-2x("./img/meat-and-potatoes-logo@2x.png", 220px, 100px);
+  }
+
+  &.tako-logo { 
+    background-image: url('./img/tako-logo.png');
+    @include image-2x("./img/tako-logo@2x.png", 220px, 100px);
+  }
+}
+
+.restaurant-contact {
+  width:100%;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+
+
+  @media (min-width: $screen-sm) {
+      width:60%
+  }
+
+  ul {
+    display:block;
+    padding:0;
+    list-style-type: none;
+    width:170px;
+    height: auto;
+    margin:10px auto 0;
+
+    @include transition();
+
+      @media (min-width: $screen-xs) {
+         width:340px;
+         height:150px;
+      }
+  }
+
+  li {
+    float:left;
+    width:170px;
+    height:40px;
+    margin-bottom:10px;
+  }
+
+  li a {
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    font-size:0.6 * $scale * 1rem;
+    letter-spacing: 0.05em;
+
+    &:hover {
+      .fa {
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+  }
+
+  .fa {
+    margin-right:15px;
+    width:40px;
+    height:40px;
+    border:1px solid lighten($text-color,40%);
+    color: lighten($text-color,20%);
+    border-radius:50%;
+    text-align:center;
+    line-height:40px;
+    font-size:0.7 * $scale * 1rem;
+    @include transition();
+
+    &.fa-mobile {
+       font-size:0.8 * $scale * 1rem;
+    }
+  }
+
+}
+
+.restaurant-accolades {
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  padding:0;
+  @include transition();
+  
+  @include clearfix(); 
+
+  p {
+    margin:1rem 0;
+  }
+
+  p > a {
+    text-decoration: underline;
+  }
+
+}
+
+.box-restaurant-big.flip {
+  
+  .restaurant-accolades{
+    max-height:1000px;
+    opacity:1;
+    padding:0 20px 20px;
+     @media (min-width: $screen-sm) {
+        padding: 0 50px 50px;
+     }
+  }
+}
+
+.separator {
+  margin: 0 auto;
+  width:95%; 
+  position:relative; 
+  
+  .mask { 
+    overflow:hidden; height:20px; 
+    &:after { 
+      content:''; 
+      display:block; 
+      margin:-25px auto 0;
+      width:100%; 
+      height:25px;  
+      border-radius:125px / 25px;  
+      box-shadow:0 0 8px rgba(0,0,0,0.35);
+    }
+  }
+
+}
 
 
 

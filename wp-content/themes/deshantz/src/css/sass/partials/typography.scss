@@ -99,6 +99,11 @@ code {
     // Forces text to constrain to the line-height. Not ideal, but works.
     vertical-align: bottom;
 }
+
+address {
+    font-style: normal;
+}
+
 /* Leading paragraph text */
 
 .lead {
