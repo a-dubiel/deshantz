@@ -544,11 +544,36 @@
   padding: 10px 0 10px 20px;
 }
 
+.posts-container {
+  margin-top:40px;
+}
+
+.posts-container .grid-sizer,
+.posts-container .post-container {
+  width:98%;
+  margin:1%;
+
+  @media (min-width: $screen-sm) {
+     width:48%;
+     margin:1%;
+  }
+
+  @media (min-width: $screen-md) {
+      width:31.3333%;
+      margin:1%;
+  }
+
+}
+
 .post-content {
   padding:20px;
 
   p {
     margin-bottom:1.5rem;
+  }
+
+  &.no-thumbnail {
+    padding-top:0;
   }
 }
 
@@ -769,6 +794,275 @@
     }
   }
 
+}
+
+// Blog 
+
+.blog-bar {
+  background-color: $section-gray-bg;
+  width:100%;
+  position: relative;
+}
+
+.blog-nav {
+
+  ul {
+    margin:0;
+    padding: 0;
+    display:block;
+    list-style-type: none;
+    height:60px;
+    white-space: nowrap;
+    width:50%; 
+    overflow:hidden;
+    float:left;
+  }
+
+  li {
+    display:inline-block;
+    margin-right:15px;
+    height:60px;
+    line-height:60px; 
+    @include transition();
+
+
+
+    &.current-cat,
+    &:hover {
+      border-bottom: 3px solid $primary;
+
+      a{
+        color: $text-color;
+      }
+    }
+  }
+
+  a {
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    letter-spacing:0.05em;
+    color: lighten($text-color,25%);
+    @include transition();
+    font-size:0.6 * $scale * 1rem;
+  }
+} 
+
+.search-form {
+  float:right;
+  height:40px;
+  position: relative;
+  margin-top:15px;
+}
+
+.search-form form {
+  
+  .fa {
+    position:absolute;
+    right:15px;
+    top:50%;
+    top:7px;
+    color: $primary;
+  }
+
+  button {
+    display:none;
+  }
+
+  input {
+    display:block;
+    width:180px;
+    height:30px;
+    border-radius:18px;
+    border:0;
+    padding:0 30px 0 20px;
+    box-sizing: border-box;
+    font-family: $font-family-headings;
+    line-height:30px;
+    font-size:0.6 * $scale * 1rem;
+
+    &:focus {
+      outline:0;
+    }
+  }
+}
+
+.pagination {
+  text-align: center;
+  margin:40px 0;
+  
+  a, span {
+    display: inline-block;
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    letter-spacing:0.05em;
+    color: lighten($text-color,25%);
+    padding:0 5px;
+    @include transition();
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .current {
+    color: $primary;
+  }
+}
+
+.blog-bar-single {
+  height:60px;
+  line-height:60px;
+
+   a, span {
+    display: inline-block;
+    font-size:0.6 * $scale * 1rem;
+    font-family: $font-family-headings;
+    text-transform: uppercase;
+    letter-spacing:0.05em;
+    color: lighten($text-color,25%);
+    padding:0 5px;
+    @include transition();
+  }
+
+  a:hover {
+    color: $primary;
+  }
+
+  .fa {
+    color: $primary;
+  }
+}
+
+.single .type-post {
+  padding:10px 0;
+ @media (min-width: $screen-sm) {
+      padding:40px 0 0;
+   }
+
+  .post-edit-link {
+    @extend .read-more-link;
+    margin:20px 0;
+  }
+}  
+
+
+// Comments
+
+.section-comments {
+  margin-top:60px;
+  padding: 40px 0;
+}
+
+.comment-respond {
+  background-color: #fff;
+  padding:40px;
+
+  h3 {
+    margin:0 0 20px 0;
+  }
+}
+
+.logged-in-as a {
+  text-decoration: underline;
+}
+
+.comment-form {
+  label, input, textarea, p {
+      font-family: $font-family-headings;
+  }
+
+  label {
+    display:block;
+    width:100%;
+    margin:10px 0;
+    color: lighten($text-color, 25%);
+  }
+
+  textarea {
+    border: 1px solid lighten($text-color, 50%);
+    resize: none;
+    padding:10px;
+    width:100%;
+    display:block;
+
+    &:focus {
+      outline:0;
+    }
+  }
+
+  input[type="text"] {
+    border:none;
+    border-bottom: 1px solid lighten($text-color, 50%);
+    height: 40px;
+    line-height: 40px;
+    margin-bottom:10px;
+    display: inline-block;
+    width:85%;
+
+    &:focus {
+      outline:0;
+    }
+  }
+
+  .submit {
+    @extend .read-more-link;
+  }
+
+
+}
+
+.comments ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.comment-author cite {
+   font-family: $font-family-headings;
+   font-weight: 700;
+   font-size: 0.8 * $scale * 1rem;
+   font-style: normal;
+}
+
+.comment {
+  display:block;
+  width:100%;
+  border-bottom: 1px solid lighten($text-color, 50%);
+  padding:40px 0;
+  @include clearfix();
+}
+
+.comment-avatar {
+  float:left;
+  width:100px;
+}
+
+.comment-content {
+  float:left;
+  width:80%;
+}
+
+.comment-avatar .avatar {
+  border-radius:50%;
+}
+
+.comment .reply {
+  margin-top:20px;
+}
+
+.comment-reply-link,
+.comment-edit-link {
+  @extend .read-more-link;
+}
+
+.comment .children {
+  margin:20px 0 0 20px;
+  padding:0;
+  @include clearfix();
+}
+
+.parent .comment-body {
+  margin-bottom:20px; 
 }
 
 

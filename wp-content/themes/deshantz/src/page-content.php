@@ -22,21 +22,25 @@
              $latest_post = new WP_Query( array('showposts' => 2, 'ignore_sticky_posts' => true)); 
              while ($latest_post->have_posts()) : $latest_post->the_post();
                $thumb_id = get_post_thumbnail_id($post->ID);
-               $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'post-thumbnail', true);
-               $thumb_url = $thumb_url_array[0];
+               if(strlen($thumb_id) !== 0) {
+                  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'post-thumbnail', true);
+                  $thumb_url = $thumb_url_array[0];
+                }
                $category = get_the_category($post->ID); 
               
              ?>
              <div class="col-xs-12 col-sm-6 post-container">
 
               <article class="post-excerpt">
-                <h6 class="subtitle post-category"><?php echo $category[0]->cat_name; ?></h6> 
+                <h6 class="subtitle post-category"><?php echo $category[0]->cat_name; ?></h6>
+                <?php if(has_post_thumbnail() && isset($thumb_url)): ?> 
                 <div class="post-thumbnail">
                   <a href="<?php the_permalink() ?>">
                     <img src="<?php echo $thumb_url ?>" />
                   </a>
                 </div>
-                <div class="post-content">
+                <?php endif; ?>
+                <div class="post-content <?php echo (has_post_thumbnail() && isset($thumb_url)) ? '' : 'no-thumbnail'; ?>"> 
                   <h3 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h3>
                   <time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
                   <p><?php echo substr(strip_tags($post->post_content), 0, 200);?>...</p>

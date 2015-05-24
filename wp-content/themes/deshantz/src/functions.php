@@ -72,11 +72,30 @@ function hero_image()
     global $post; 
     $post_id =  $post->ID;  
 
-    if(has_post_thumbnail($post_id)) {
+    if(is_404()) {
+        $image_src = get_template_directory_uri() . '/img/bg/not-found.jpg';
+    }
+    elseif(is_search()) {
+       $image_src = get_template_directory_uri() . '/img/bg/not-found.jpg'; 
+    }
+    elseif(is_archive()) {
+         $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
+    }
+    elseif(has_post_thumbnail($post_id)) {
         $image_src = wp_get_attachment_url(get_post_thumbnail_id($post_id, 'hero-image'));
     } 
+
+    elseif(is_home()) {
+
+        $latest_post = get_posts( array('showposts' => 1, 'ignore_sticky_posts' => true) );
+        foreach ( $latest_post as $the_post ) {
+            setup_postdata( $the_post );
+            $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_post->ID, 'hero-image'));
+        }  
+        wp_reset_postdata();
+    }
     else {
-        $image_src = get_template_directory_uri() . '/img/bg/home.jpg';
+        $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
     }
 
     return $image_src;
@@ -100,7 +119,7 @@ function nav_main()
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="http://www.twitter.com/rickdeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="https://www.instagram.com/rick_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
+        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
         'depth'           => 0,
         'walker'          => ''
         )
@@ -148,10 +167,13 @@ function html5blank_header_scripts()
             wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
             // Pace
-            wp_register_script('pace', get_template_directory_uri() . '/bower_components/pace/pace.min.js', array(), '1.0.2');
+           // wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0');
 
             // Instafeed
             wp_register_script('instafeed', get_template_directory_uri() . '/bower_components/instafeed.js/instafeed.min.js', array(), '1.3.2');
+
+            // Pace
+            wp_register_script('pace', get_template_directory_uri() . '/bower_components/pace/pace.min.js', array(), '1.0.2');
 
             // Custom scripts
             wp_register_script(
@@ -159,6 +181,7 @@ function html5blank_header_scripts()
                 get_template_directory_uri() . '/js/scripts.js',
                 array(
                     'pace',
+                   // 'isotope',
                     'instafeed',
                     'conditionizr',
                     'modernizr',
@@ -401,31 +424,37 @@ function html5blankcomments($comment, $args, $depth)
         $add_below = 'div-comment';
     }
 ?>
-    <!-- heads up: starting < for the html tag (li or div) in the next line: -->
+    
     <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
     <?php if ( 'div' != $args['style'] ) : ?>
     <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
     <?php endif; ?>
-    <div class="comment-author vcard">
-    <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-    <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+    <div class="comment-avatar">
+        <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, 50 ); ?>
     </div>
-<?php if ($comment->comment_approved == '0') : ?>
-    <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-    <br />
-<?php endif; ?>
-
-    <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+    <div class="comment-content">
+    <div class="comment-author vcard"><?php printf(__('<cite>%s</cite>'), get_comment_author_link()) ?></div>
+    <div class="comment-meta commentmetadata"><a class="subtitle" href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
         <?php
-            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
+            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('Edit'),'  ','' );
         ?>
     </div>
+        <div class="comment-text">
+            <?php if ($comment->comment_approved == '0') : ?>
+                <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+                <br />
+            <?php endif; ?>
 
-    <?php comment_text() ?>
+            <?php comment_text() ?>
 
-    <div class="reply">
-    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            <div class="reply">
+            <?php comment_reply_link(array_merge( $args, array('class' => 'read-more-link', 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            </div>
+
+        </div>
     </div>
+
+
     <?php if ( 'div' != $args['style'] ) : ?>
     </div>
     <?php endif; ?>

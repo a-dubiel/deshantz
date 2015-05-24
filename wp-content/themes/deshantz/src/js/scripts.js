@@ -8,20 +8,47 @@
     initInstafeed();
     scrollFade($(".intro"), 0.5, 0);
     checkHash();
+    //initIsotope();
 
     $('.js-accolades').on('click', function(e){ 
       $(this).parents('.box-restaurant-big').toggleClass('flip'); 
       var text = $(this).find('span').text();
       $(this).find('span').text( text === 'Show' ? 'Hide' : 'Show');
       e.preventDefault();  
-    });  
-
+    }); 
 
     $win.on("resize", function () {      
       clearTimeout($win.resizedFinished);
       $win.resizedFinished = setTimeout(function(){
        resizeHeader();
      }, 250);
+    });
+
+    $('.share-links a').on('click', function(e){
+        var share_url = $(this).data('url');
+        var vendor = $(this).data('vendor');
+        var width = 500;
+        var height = 400;
+        var leftPosition, topPosition, url;
+
+
+        if(vendor === 'fb') {
+          url = 'https://www.facebook.com/sharer/sharer.php?u='+ encodeURI(share_url) +'"';
+        }
+        else if(vendor === 'tw') {
+         url = 'http://www.twitter.com/share?url='+ encodeURI(share_url);
+        }
+        else if(vendor === 'gl') {
+          url = 'https://plus.google.com/share?url='+ encodeURI(share_url);
+        }
+       
+        //Allow for borders.
+        leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+        //Allow for title and status bars.
+        topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+        window.open(url, "share_window", "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no");
+
+        e.preventDefault();
     });
   
   });
@@ -61,6 +88,7 @@
       feed.run();
     }
   }  
+
 
   function scrollFade($element, friction, offset) {
 

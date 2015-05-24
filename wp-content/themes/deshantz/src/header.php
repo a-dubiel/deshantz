@@ -71,9 +71,42 @@
                       <h1><?php echo $title ?></h1>
                       <p><?php echo $subtitle ?></p>
                   <?php else: ?>
-                        kurwa?
+                      <h1><?php the_title(); ?></h1>
                   <?php endif; ?>
 
+            <?php elseif(is_home()): ?>
+                <?php
+                  $latest_post = new WP_Query( array('showposts' => 1, 'ignore_sticky_posts' => true) ); 
+                  while ($latest_post->have_posts()) : $latest_post->the_post(); ?>
+                   
+                   <h1>From The Blog</h1>
+                   <div class="post-data">
+                     <time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
+                     <p><?php the_title(); ?></p>
+                     <a href="<?php the_permalink() ?>" class="read-more-link">Read more</a>
+                   </div>
+
+                 <?php endwhile; wp_reset_postdata(); ?>
+            <?php elseif(is_archive()): ?>
+               <h1><?php single_cat_title();?><?php single_month_title();?></h1>
+               <p>Posts from category</p>
+            <?php elseif(is_single()): ?>
+                <h3 class="h1">From The Blog</h3>
+                  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+                   <div class="post-data">
+                     <time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
+                     <h1 class="post-data-title" title="<?php the_title_attribute(); ?>"><?php the_title() ?></h1>
+                   </div>
+                    <?php endwhile; endif; ?>
+            <?php elseif(is_404()): ?>
+                <h1>Ooops!</h1>
+                <div class="post-data">
+                  <p>Looks like this page does not exist.</p>
+                  <a href="<?php echo site_url() ?>" class="read-more-link">Go back home</a>
+                </div>
+            <?php elseif(is_search()): ?>
+                <h1>Search Results</h1>
+                <p><?php echo sprintf( __( 'We got %s results for ', 'html5blank' ), $wp_query->found_posts ); echo get_search_query(); ?></p>
             <?php else: ?>
                 pusto
             <?php endif; ?>

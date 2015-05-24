@@ -1,50 +1,50 @@
 <?php get_header(); ?>
 
+  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+
 	<main role="main">
+	  <!-- blog navigation -->
+  <div class="blog-bar blog-bar-single">
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                  <div class="pull-right">
+                    <span class="comment-link"><b><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Add Comment', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></b> <i class="fa fa-comment"></i></span>
+                    <span  class="share-links"><b>Share</b> <a href="#" data-vendor="fb" data-url="<?php the_permalink() ?>"><i class="fa fa-facebook"></i></a> <a href="#" data-vendor="tw" data-url="<?php the_permalink() ?>"><i class="fa fa-twitter"></i></a></span>
+                  </div>
+                  <div class="pull-left">
+                    <span class="author">By <b><?php the_author(); ?></b></span>
+                  </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- /blog navigation -->
 	<!-- section -->
 	<section>
 
-	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+
 
 		<!-- article -->
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<div class="container">
+				<div class="row">
+        	<div class="col-xs-12 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        			<?php the_content(); // Dynamic Content ?>
 
-			<!-- post thumbnail -->
-			<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-					<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-				</a>
-			<?php endif; ?>
-			<!-- /post thumbnail -->
+        			<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
 
-			<!-- post title -->
-			<h1>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-			</h1>
-			<!-- /post title -->
+        			<p class="subtitle"><?php _e( 'Category: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
 
-			<!-- post details -->
-			<span class="date">
-				<time datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>">
-					<?php the_date(); ?> <?php the_time(); ?>
-				</time>
-			</span>
-			<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-			<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-			<!-- /post details -->
-
-			<?php the_content(); // Dynamic Content ?>
-
-			<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
-
-			<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
-
-			<p><?php _e( 'This post was written by ', 'html5blank' ); the_author(); ?></p>
-
-			<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+        			<div class="edit-link">
+                <?php edit_post_link('Edit this post'); ?> 
+              </div>
+					</div>
+				</div>
+			</div>
 
 			<?php comments_template(); ?>
-
+		
 		</article>
 		<!-- /article -->
 
@@ -65,7 +65,5 @@
 	</section>
 	<!-- /section -->
 	</main>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

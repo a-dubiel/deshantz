@@ -67,17 +67,26 @@
   }
 }
 
+.intro-content .post-data {
+  p, .post-data-title {
+    margin:1.5rem 0;
+  }
+}
+
 .intro-content h1,
-.intro-content p {
+.intro-content p,
+.intro-content .h1 {
   color: #fff; 
 }
 
-.intro-content h1 {
+.intro-content h1:not(.post-data-title),
+.intro-content .h1 {
   font-size: $scale * 1rem;
   text-transform: uppercase;
   font-weight:500;
   letter-spacing: 0.15em;
   margin-top:0;
+  line-height: 3 * $leading;
 
 
   @media (min-width: $screen-sm) {
@@ -87,12 +96,14 @@
 
 }
 
-.intro-content p {
+.intro-content p,
+.intro-content h1.post-data-title {
   font-family: $font-family-headings;
   font-size: $scale / 1.5 * 1rem;
   line-height: $leading;
   padding: 0 20px;
   margin:0;
+  font-weight: normal;
 
   @media (min-width: $screen-sm) {
       padding: 0 100px;

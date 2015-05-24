@@ -6,6 +6,10 @@
     "jquery": "~1.11.1",
     "modernizr": "~2.8.3",
     "normalize.css": "~3.0.1",
-    "pace": "~1.0.2"
+    "pace": "~1.0.2",
+    "isotope": "~2.2.0"
+  },
+  "dependencies": {
+    "isotope": "~2.2.0"
   }
 }

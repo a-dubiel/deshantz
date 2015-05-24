@@ -29,7 +29,8 @@
     display: inline;   
     padding:0 15px;
 
-    &.current-menu-item a {
+    &.current-menu-item a,
+    &.current_page_parent a {
       color: $primary;
     }
 
