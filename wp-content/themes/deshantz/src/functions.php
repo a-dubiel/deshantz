@@ -83,14 +83,20 @@ function hero_image()
     }
     elseif(has_post_thumbnail($post_id)) {
         $image_src = wp_get_attachment_url(get_post_thumbnail_id($post_id, 'hero-image'));
-    } 
 
+    } 
     elseif(is_home()) {
 
         $latest_post = get_posts( array('showposts' => 1, 'ignore_sticky_posts' => true) );
         foreach ( $latest_post as $the_post ) {
             setup_postdata( $the_post );
-            $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_post->ID, 'hero-image'));
+            if(has_post_thumbnail()){
+                $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_post->ID, 'hero-image'));
+            }
+            else {
+                $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
+            }
+            
         }  
         wp_reset_postdata();
     }
@@ -501,6 +507,8 @@ add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from 
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
+add_filter( 'use_default_gallery_style', '__return_false' );
+
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether

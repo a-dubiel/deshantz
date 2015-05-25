@@ -567,6 +567,7 @@
 
 .post-content {
   padding:20px;
+  word-wrap: break-word;
 
   p {
     margin-bottom:1.5rem;
@@ -1011,8 +1012,8 @@
 
 }
 
-.comments ul {
-  margin: 0;
+.comments ul:not(.children) {
+  margin: 0 0 40px 0;
   padding: 0;
   list-style-type: none;
 }
@@ -1026,6 +1027,7 @@
 
 .comment {
   display:block;
+  clear:both;
   width:100%;
   border-bottom: 1px solid lighten($text-color, 50%);
   padding:40px 0;
@@ -1056,14 +1058,32 @@
 }
 
 .comment .children {
-  margin:20px 0 0 20px;
+  margin:20px 0 0 40px;
   padding:0;
+  display:block;
+  width:100%;
+  clear:both;
   @include clearfix();
 }
 
 .parent .comment-body {
   margin-bottom:20px; 
 }
+
+.gallery {
+   margin: auto;
+}
+.gallery-item {
+   float: left;
+   margin-top: 10px;
+   text-align: center;
+   margin-right:10px;
+}
+
+.gallery-caption {
+   margin-left: 0;
+}
+
 
 
 

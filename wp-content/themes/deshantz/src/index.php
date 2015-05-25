@@ -7,7 +7,7 @@
       <nav class="blog-nav">
         <ul>
           <li class="<?php echo is_home() ? 'current-cat' : '' ?>"><a href="<?php echo site_url() ?>/blog">Latest Posts</a></li>
-          <?php wp_list_categories(array('title_li' => false, 'depth' => 1, 'current_category' => 1, 'number' => 4 )); ?>
+            <?php wp_list_categories(array('title_li' => false, 'depth' => 1, 'current_category' => null, 'number' => 4, 'exclude' => 1 )); ?>
         </ul>
       </nav> 
       <div class="search-form">

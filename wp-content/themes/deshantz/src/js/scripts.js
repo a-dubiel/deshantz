@@ -83,7 +83,7 @@
         limit: 3,
         sortBy: "most-recent",
         resolution: "low_resolution",
-        template: '<a href="{{link}}" target="_blank" class="instagram-tile" style="background-image: url({{image}})"><div class="instagram-overlay"><span><i class="fa fa-heart"></i> {{likes}}</span></div>'
+        template: '<a href="{{link}}" title="View on Instagram" target="_blank" class="instagram-tile" style="background-image: url({{image}})"><div class="instagram-overlay"><span><i class="fa fa-heart"></i> {{likes}}</span></div>'
       });
       feed.run();
     }

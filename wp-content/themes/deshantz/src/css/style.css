@@ -2592,6 +2592,7 @@ ul.nav-footer-social li {
 
 .post-content {
   padding: 20px;
+  word-wrap: break-word;
 }
 .post-content p {
   margin-bottom: 1.5rem;
@@ -3049,8 +3050,8 @@ ul.nav-footer-social li {
   outline: 0;
 }
 
-.comments ul {
-  margin: 0;
+.comments ul:not(.children) {
+  margin: 0 0 40px 0;
   padding: 0;
   list-style-type: none;
 }
@@ -3064,6 +3065,7 @@ ul.nav-footer-social li {
 
 .comment {
   display: block;
+  clear: both;
   width: 100%;
   border-bottom: 1px solid #d9d9d9;
   padding: 40px 0;
@@ -3095,8 +3097,11 @@ ul.nav-footer-social li {
 }
 
 .comment .children {
-  margin: 20px 0 0 20px;
+  margin: 20px 0 0 40px;
   padding: 0;
+  display: block;
+  width: 100%;
+  clear: both;
 }
 .comment .children:before, .comment .children:after {
   content: " ";
@@ -3108,6 +3113,21 @@ ul.nav-footer-social li {
 
 .parent .comment-body {
   margin-bottom: 20px;
+}
+
+.gallery {
+  margin: auto;
+}
+
+.gallery-item {
+  float: left;
+  margin-top: 10px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.gallery-caption {
+  margin-left: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
