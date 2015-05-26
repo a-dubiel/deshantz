@@ -97,6 +97,11 @@
   vertical-align: middle;
 }
 
+.box-content p:not(.intro-paragraph) {
+  margin:0;
+  line-height: 1rem;
+}
+
 .intro-paragraph {
   margin-bottom:1.5rem;
 }
@@ -252,23 +257,23 @@
 
   @media (min-width: $screen-md) {
     width:33.3333333%;
-   padding-bottom:33.3333333%;
+    padding-bottom:33.3333333%;
 
-   &:nth-child(3) {
-    display:block;
-  }
-}
-
-&:hover {
-  .instagram-overlay {
-    opacity:1;
-
-    span {
-      opacity:1;
-      transform: translateY(-50%);
+    &:nth-child(3) {
+      display:block;
     }
   }
-}
+
+  &:hover {
+    .instagram-overlay {
+      opacity:1;
+
+      span {
+        opacity:1;
+        transform: translateY(-50%);
+      }
+    }
+  }
 }
 
 .instagram-overlay {
@@ -340,7 +345,7 @@
     width:40%;  
   }
 }
-  
+
 .home-section-padding {
   padding: 40px 0;
 }
@@ -379,9 +384,9 @@
       opacity:0.5;
     }
 
-     @media (max-width: $screen-xs) {
-        width:160px;
-        background-size: 160px !important;
+    @media (max-width: $screen-xs) {
+      width:160px;
+      background-size: 160px !important;
     }
   }
 
@@ -498,7 +503,7 @@
 
   h1,h2,h3 {
     @extend .title;
-     line-height: 1.2 * $scale * 1rem;
+    line-height: 1.2 * $scale * 1rem;
   }
 
   ul,ol {
@@ -554,14 +559,14 @@
   margin:1%;
 
   @media (min-width: $screen-sm) {
-     width:48%;
-     margin:1%;
-  }
+   width:48%;
+   margin:1%;
+ }
 
-  @media (min-width: $screen-md) {
-      width:31.3333%;
-      margin:1%;
-  }
+ @media (min-width: $screen-md) {
+  width:31.3333%;
+  margin:1%;
+}
 
 }
 
@@ -597,25 +602,25 @@
 .section-restaurants {
   padding:20px 0;
   @media (min-width: $screen-sm) {
-      padding: 50px 0;
+    padding: 50px 0;
   }
 
   @media (min-width: $screen-md) {
-      padding: 100px 0;
+    padding: 100px 0;
   }
- 
+
 }
 
 .box-restaurant-big {
-    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.15);
-    background-color: #fff;
-    margin-bottom:80px;
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.15);
+  background-color: #fff;
+  margin-bottom:80px;
 
-    &:hover {
-      .restaurant-cover img {
-        transform: scale(1.05);
-      }
+  &:hover {
+    .restaurant-cover img {
+      transform: scale(1.05);
     }
+  }
 }
 
 .restaurant-cover {
@@ -631,9 +636,9 @@
 
 .restaurant-info {
   padding:20px;
-   @media (min-width: $screen-sm) {
-      padding:50px;
-   }
+  @media (min-width: $screen-sm) {
+    padding:50px;
+  }
   @include clearfix(); 
 }
 
@@ -649,8 +654,8 @@
 
 
   @media (min-width: $screen-sm) {
-      width:40%;
-      margin:0;
+    width:40%;
+    margin:0;
   }
 
 }
@@ -679,7 +684,8 @@
   }
 }
 
-.restaurant-contact {
+.restaurant-contact,
+.main-contact {
   width:100%;
   position: relative;
   perspective: 1000px;
@@ -687,7 +693,7 @@
 
 
   @media (min-width: $screen-sm) {
-      width:60%
+    width:60%
   }
 
   ul {
@@ -700,49 +706,49 @@
 
     @include transition();
 
-      @media (min-width: $screen-xs) {
-         width:340px;
-         height:150px;
-      }
-  }
+    @media (min-width: $screen-xs) {
+     width:340px;
+     height:150px;
+   }
+ }
 
-  li {
-    float:left;
-    width:170px;
-    height:40px;
-    margin-bottom:10px;
-  }
+ li {
+  float:left;
+  width:170px;
+  height:40px;
+  margin-bottom:10px;
+}
 
-  li a {
-    font-family: $font-family-headings;
-    text-transform: uppercase;
-    font-size:0.6 * $scale * 1rem;
-    letter-spacing: 0.05em;
+li a {
+  font-family: $font-family-headings;
+  text-transform: uppercase;
+  font-size:0.6 * $scale * 1rem;
+  letter-spacing: 0.05em;
 
-    &:hover {
-      .fa {
-        border-color: $primary;
-        color: $primary;
-      }
+  &:hover {
+    .fa {
+      border-color: $primary;
+      color: $primary;
     }
   }
+}
 
-  .fa {
-    margin-right:15px;
-    width:40px;
-    height:40px;
-    border:1px solid lighten($text-color,40%);
-    color: lighten($text-color,20%);
-    border-radius:50%;
-    text-align:center;
-    line-height:40px;
-    font-size:0.7 * $scale * 1rem;
-    @include transition();
+.fa {
+  margin-right:15px;
+  width:40px;
+  height:40px;
+  border:1px solid lighten($text-color,40%);
+  color: lighten($text-color,20%);
+  border-radius:50%;
+  text-align:center;
+  line-height:40px;
+  font-size:0.7 * $scale * 1rem;
+  @include transition();
 
-    &.fa-mobile {
-       font-size:0.8 * $scale * 1rem;
-    }
-  }
+  &.fa-mobile {
+   font-size:0.8 * $scale * 1rem;
+ }
+}
 
 }
 
@@ -766,14 +772,14 @@
 }
 
 .box-restaurant-big.flip {
-  
+
   .restaurant-accolades{
     max-height:1000px;
     opacity:1;
     padding:0 20px 20px;
-     @media (min-width: $screen-sm) {
-        padding: 0 50px 50px;
-     }
+    @media (min-width: $screen-sm) {
+      padding: 0 50px 50px;
+    }
   }
 }
 
@@ -856,7 +862,7 @@
 }
 
 .search-form form {
-  
+
   .fa {
     position:absolute;
     right:15px;
@@ -914,7 +920,7 @@
   height:60px;
   line-height:60px;
 
-   a, span {
+  a, span {
     display: inline-block;
     font-size:0.6 * $scale * 1rem;
     font-family: $font-family-headings;
@@ -936,9 +942,9 @@
 
 .single .type-post {
   padding:10px 0;
- @media (min-width: $screen-sm) {
-      padding:40px 0 0;
-   }
+  @media (min-width: $screen-sm) {
+    padding:40px 0 0;
+  }
 
   .post-edit-link {
     @extend .read-more-link;
@@ -967,9 +973,10 @@
   text-decoration: underline;
 }
 
-.comment-form {
+.comment-form,
+.wpcf7-form {
   label, input, textarea, p {
-      font-family: $font-family-headings;
+    font-family: $font-family-headings;
   }
 
   label {
@@ -991,7 +998,8 @@
     }
   }
 
-  input[type="text"] {
+  input[type="text"],
+  input[type="email"] {
     border:none;
     border-bottom: 1px solid lighten($text-color, 50%);
     height: 40px;
@@ -1019,10 +1027,10 @@
 }
 
 .comment-author cite {
-   font-family: $font-family-headings;
-   font-weight: 700;
-   font-size: 0.8 * $scale * 1rem;
-   font-style: normal;
+ font-family: $font-family-headings;
+ font-weight: 700;
+ font-size: 0.8 * $scale * 1rem;
+ font-style: normal;
 }
 
 .comment {
@@ -1053,9 +1061,10 @@
 }
 
 .comment-reply-link,
-.comment-edit-link {
+.comment-edit-link,
+.wpcf7-form .wpcf7-submit  {
   @extend .read-more-link;
-}
+} 
 
 .comment .children {
   margin:20px 0 0 40px;
@@ -1071,18 +1080,136 @@
 }
 
 .gallery {
-   margin: auto;
+ margin: auto;
 }
 .gallery-item {
-   float: left;
-   margin-top: 10px;
-   text-align: center;
-   margin-right:10px;
+ float: left;
+ margin-top: 10px;
+ text-align: center;
+ margin-right:10px;
 }
 
 .gallery-caption {
-   margin-left: 0;
+ margin-left: 0;
 }
+
+// Contact
+
+.wpcf7-form {
+  p {
+    padding:0;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    width:100%;
+  }
+
+  label {
+    margin:10px 0;
+  }
+
+  textarea {
+    margin-bottom:20px;
+  }
+}
+
+div.wpcf7-response-output {
+  margin: 20px 0;
+  padding: 10px;
+  border:none;
+  color: #fff;
+  font-family: $font-family-headings;
+}
+
+div.wpcf7 .screen-reader-response {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+div.wpcf7-mail-sent-ok {
+  background-color: #65AA1A;
+}
+
+div.wpcf7-spam-blocked,
+div.wpcf7-validation-errors,
+div.wpcf7-mail-sent-ng {
+  background-color: #E22525;
+}
+
+span.wpcf7-form-control-wrap {
+  position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+  color: #E22525;
+  display: block; 
+}
+
+.use-floating-validation-tip span.wpcf7-not-valid-tip { 
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 100;
+  border: 1px solid #ff0000;
+  background: #fff;
+  padding: .2em .8em;
+}
+
+span.wpcf7-list-item {
+  margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+  display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+  display:none;
+}
+
+div.wpcf7 div.ajax-error {
+  display: none;
+}
+
+div.wpcf7 .placeheld {
+  color: $text-color;
+}
+
+.page-contact {
+  padding:50px 0;
+}
+
+.main-contact {
+ ul {
+  display:block;
+  padding:0;
+  list-style-type: none;
+  width:170px;
+  margin:20px 0;
+
+  .contact-person a {
+    text-transform: none;
+    letter-spacing: normal;
+
+    small {
+      display:block;
+    }
+  }
+  }}
+
+
+
+
+
+
+
 
 
 

@@ -114,3 +114,12 @@ address {
 .hug {
     margin-top: 0;
 }
+
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder {
+   color: $text-color;
+}
+
+

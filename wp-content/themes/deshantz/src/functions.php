@@ -40,7 +40,7 @@ if (function_exists('add_theme_support'))
     ));*/
 
     //remove auto p tags
-   // remove_filter( 'the_content', 'wpautop' );
+   //remove_filter( 'the_content', 'wpautop' );
 
     // Add Support for Custom Header - Uncomment below if you're going to use
     /*add_theme_support('custom-header', array(

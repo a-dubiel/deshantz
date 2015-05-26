@@ -132,7 +132,6 @@ button {
   background: none;
   border: 0;
   color: inherit;
-  /* cursor: default; */
   font: inherit;
   line-height: normal;
   overflow: visible;
@@ -143,6 +142,15 @@ button {
   /* for button */
   -moz-user-select: none;
   -ms-user-select: none;
+}
+input[type="submit"]:focus, input[type="submit"]:active,
+input[type="reset"]:focus,
+input[type="reset"]:active,
+input[type="button"]:focus,
+input[type="button"]:active,
+button:focus,
+button:active {
+  outline: none;
 }
 
 input::-moz-focus-inner,
@@ -264,6 +272,13 @@ address {
 /* Hug a the block above you */
 .hug {
   margin-top: 0;
+}
+
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder {
+  color: #5a5a5a;
 }
 
 /**
@@ -2047,6 +2062,11 @@ ul.nav-footer-social li {
   vertical-align: middle;
 }
 
+.box-content p:not(.intro-paragraph) {
+  margin: 0;
+  line-height: 1rem;
+}
+
 .intro-paragraph {
   margin-bottom: 1.5rem;
 }
@@ -2078,16 +2098,20 @@ ul.nav-footer-social li {
   color: #b3b3b3;
 }
 
-.read-more-link, .single .type-post .post-edit-link, .comment-form .submit, .comment-reply-link,
-.comment-edit-link {
+.read-more-link, .single .type-post .post-edit-link, .comment-form .submit,
+.wpcf7-form .submit, .comment-reply-link,
+.comment-edit-link,
+.wpcf7-form .wpcf7-submit {
   font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 700;
   color: #ECA80C;
 }
-.read-more-link:hover, .single .type-post .post-edit-link:hover, .comment-form .submit:hover, .comment-reply-link:hover,
-.comment-edit-link:hover {
+.read-more-link:hover, .single .type-post .post-edit-link:hover, .comment-form .submit:hover,
+.wpcf7-form .submit:hover, .comment-reply-link:hover,
+.comment-edit-link:hover,
+.wpcf7-form .wpcf7-submit:hover {
   -webkit-transition: all 0.3s ease-in-out 0s;
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
@@ -2485,8 +2509,12 @@ ul.nav-footer-social li {
   color: #fff;
 }
 
-.box-restaurant:hover .box-restaurant-content .read-more-link, .box-restaurant:hover .box-restaurant-content .single .type-post .post-edit-link, .single .type-post .box-restaurant:hover .box-restaurant-content .post-edit-link, .box-restaurant:hover .box-restaurant-content .comment-form .submit, .comment-form .box-restaurant:hover .box-restaurant-content .submit, .box-restaurant:hover .box-restaurant-content .comment-reply-link,
-.box-restaurant:hover .box-restaurant-content .comment-edit-link {
+.box-restaurant:hover .box-restaurant-content .read-more-link, .box-restaurant:hover .box-restaurant-content .single .type-post .post-edit-link, .single .type-post .box-restaurant:hover .box-restaurant-content .post-edit-link, .box-restaurant:hover .box-restaurant-content .comment-form .submit, .comment-form .box-restaurant:hover .box-restaurant-content .submit,
+.box-restaurant:hover .box-restaurant-content .wpcf7-form .submit,
+.wpcf7-form .box-restaurant:hover .box-restaurant-content .submit, .box-restaurant:hover .box-restaurant-content .comment-reply-link,
+.box-restaurant:hover .box-restaurant-content .comment-edit-link,
+.box-restaurant:hover .box-restaurant-content .wpcf7-form .wpcf7-submit,
+.wpcf7-form .box-restaurant:hover .box-restaurant-content .wpcf7-submit {
   opacity: 1;
 }
 .box-restaurant:hover .box-restaurant-content .title, .box-restaurant:hover .box-restaurant-content .page-content h1, .page-content .box-restaurant:hover .box-restaurant-content h1, .box-restaurant:hover .box-restaurant-content .page-content h2, .page-content .box-restaurant:hover .box-restaurant-content h2, .box-restaurant:hover .box-restaurant-content .page-content h3, .page-content .box-restaurant:hover .box-restaurant-content h3,
@@ -2496,8 +2524,12 @@ ul.nav-footer-social li {
 .single .type-post .box-restaurant:hover .box-restaurant-content .post-edit-link,
 .box-restaurant:hover .box-restaurant-content .comment-form .submit,
 .comment-form .box-restaurant:hover .box-restaurant-content .submit,
+.box-restaurant:hover .box-restaurant-content .wpcf7-form .submit,
+.wpcf7-form .box-restaurant:hover .box-restaurant-content .submit,
 .box-restaurant:hover .box-restaurant-content .comment-reply-link,
-.box-restaurant:hover .box-restaurant-content .comment-edit-link {
+.box-restaurant:hover .box-restaurant-content .comment-edit-link,
+.box-restaurant:hover .box-restaurant-content .wpcf7-form .wpcf7-submit,
+.wpcf7-form .box-restaurant:hover .box-restaurant-content .wpcf7-submit {
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
@@ -2527,8 +2559,12 @@ ul.nav-footer-social li {
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
-.box-restaurant-content .read-more-link, .box-restaurant-content .single .type-post .post-edit-link, .single .type-post .box-restaurant-content .post-edit-link, .box-restaurant-content .comment-form .submit, .comment-form .box-restaurant-content .submit, .box-restaurant-content .comment-reply-link,
-.box-restaurant-content .comment-edit-link {
+.box-restaurant-content .read-more-link, .box-restaurant-content .single .type-post .post-edit-link, .single .type-post .box-restaurant-content .post-edit-link, .box-restaurant-content .comment-form .submit, .comment-form .box-restaurant-content .submit,
+.box-restaurant-content .wpcf7-form .submit,
+.wpcf7-form .box-restaurant-content .submit, .box-restaurant-content .comment-reply-link,
+.box-restaurant-content .comment-edit-link,
+.box-restaurant-content .wpcf7-form .wpcf7-submit,
+.wpcf7-form .box-restaurant-content .wpcf7-submit {
   -webkit-transition: all 0.3s ease-in-out 0s;
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
@@ -2754,7 +2790,8 @@ ul.nav-footer-social li {
   }
 }
 
-.restaurant-contact {
+.restaurant-contact,
+.main-contact {
   width: 100%;
   position: relative;
   -webkit-perspective: 1000px;
@@ -2763,11 +2800,13 @@ ul.nav-footer-social li {
   transform-style: preserve-3d;
 }
 @media (min-width: 768px) {
-  .restaurant-contact {
+  .restaurant-contact,
+  .main-contact {
     width: 60%;
   }
 }
-.restaurant-contact ul {
+.restaurant-contact ul,
+.main-contact ul {
   display: block;
   padding: 0;
   list-style-type: none;
@@ -2779,28 +2818,33 @@ ul.nav-footer-social li {
   transition: all 0.3s ease-in-out 0s;
 }
 @media (min-width: 480px) {
-  .restaurant-contact ul {
+  .restaurant-contact ul,
+  .main-contact ul {
     width: 340px;
     height: 150px;
   }
 }
-.restaurant-contact li {
+.restaurant-contact li,
+.main-contact li {
   float: left;
   width: 170px;
   height: 40px;
   margin-bottom: 10px;
 }
-.restaurant-contact li a {
+.restaurant-contact li a,
+.main-contact li a {
   font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
   text-transform: uppercase;
   font-size: 0.8484rem;
   letter-spacing: 0.05em;
 }
-.restaurant-contact li a:hover .fa {
+.restaurant-contact li a:hover .fa,
+.main-contact li a:hover .fa {
   border-color: #ECA80C;
   color: #ECA80C;
 }
-.restaurant-contact .fa {
+.restaurant-contact .fa,
+.main-contact .fa {
   margin-right: 15px;
   width: 40px;
   height: 40px;
@@ -2814,7 +2858,8 @@ ul.nav-footer-social li {
   -khtml-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
-.restaurant-contact .fa.fa-mobile {
+.restaurant-contact .fa.fa-mobile,
+.main-contact .fa.fa-mobile {
   font-size: 1.1312rem;
 }
 
@@ -3022,26 +3067,36 @@ ul.nav-footer-social li {
   text-decoration: underline;
 }
 
-.comment-form label, .comment-form input, .comment-form textarea, .comment-form p {
+.comment-form label, .comment-form input, .comment-form textarea, .comment-form p,
+.wpcf7-form label,
+.wpcf7-form input,
+.wpcf7-form textarea,
+.wpcf7-form p {
   font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
 }
-.comment-form label {
+.comment-form label,
+.wpcf7-form label {
   display: block;
   width: 100%;
   margin: 10px 0;
   color: #999999;
 }
-.comment-form textarea {
+.comment-form textarea,
+.wpcf7-form textarea {
   border: 1px solid #d9d9d9;
   resize: none;
   padding: 10px;
   width: 100%;
   display: block;
 }
-.comment-form textarea:focus {
+.comment-form textarea:focus,
+.wpcf7-form textarea:focus {
   outline: 0;
 }
-.comment-form input[type="text"] {
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"] {
   border: none;
   border-bottom: 1px solid #d9d9d9;
   height: 40px;
@@ -3050,7 +3105,10 @@ ul.nav-footer-social li {
   display: inline-block;
   width: 85%;
 }
-.comment-form input[type="text"]:focus {
+.comment-form input[type="text"]:focus,
+.comment-form input[type="email"]:focus,
+.wpcf7-form input[type="text"]:focus,
+.wpcf7-form input[type="email"]:focus {
   outline: 0;
 }
 
@@ -3132,4 +3190,105 @@ ul.nav-footer-social li {
 
 .gallery-caption {
   margin-left: 0;
+}
+
+.wpcf7-form p {
+  padding: 0;
+}
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"] {
+  width: 100%;
+}
+.wpcf7-form label {
+  margin: 10px 0;
+}
+.wpcf7-form textarea {
+  margin-bottom: 20px;
+}
+
+div.wpcf7-response-output {
+  margin: 20px 0;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  font-family: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+}
+
+div.wpcf7 .screen-reader-response {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+div.wpcf7-mail-sent-ok {
+  background-color: #65AA1A;
+}
+
+div.wpcf7-spam-blocked,
+div.wpcf7-validation-errors,
+div.wpcf7-mail-sent-ng {
+  background-color: #E22525;
+}
+
+span.wpcf7-form-control-wrap {
+  position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+  color: #E22525;
+  display: block;
+}
+
+.use-floating-validation-tip span.wpcf7-not-valid-tip {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 100;
+  border: 1px solid #ff0000;
+  background: #fff;
+  padding: .2em .8em;
+}
+
+span.wpcf7-list-item {
+  margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+  display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+  display: none;
+}
+
+div.wpcf7 div.ajax-error {
+  display: none;
+}
+
+div.wpcf7 .placeheld {
+  color: #5a5a5a;
+}
+
+.page-contact {
+  padding: 50px 0;
+}
+
+.main-contact ul {
+  display: block;
+  padding: 0;
+  list-style-type: none;
+  width: 170px;
+  margin: 20px 0;
+}
+.main-contact ul .contact-person a {
+  text-transform: none;
+  letter-spacing: normal;
+}
+.main-contact ul .contact-person a small {
+  display: block;
 }
