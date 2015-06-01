@@ -3278,15 +3278,23 @@ div.wpcf7 .placeheld {
   display: block;
   padding: 0;
   list-style-type: none;
-  width: 170px;
   margin: 20px 0;
 }
-.main-contact ul .contact-person a {
+.main-contact li {
+  width: 250px;
+}
+
+.main-contact .contact-person a {
   text-transform: none;
   letter-spacing: normal;
+  line-height: 1rem;
 }
-.main-contact ul .contact-person a small {
+.main-contact .contact-person a .fa {
+  float: left;
+}
+.main-contact .contact-person a small {
   display: block;
+  font-size: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

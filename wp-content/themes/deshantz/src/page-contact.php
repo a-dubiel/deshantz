@@ -20,7 +20,7 @@
 
             <div class="main-contact">
               <ul>
-                <li class="contact-person"><a href="http://www.twitter.com/butcherntherye" target="_blank"><i class="fa fa-twitter"></i> Tamara Lelli<small>press@richarddeshantz.com</small></a></li>
+                <li class="contact-person"><a href="mailto:press@richarddeshantz.com" target="_blank"><i class="fa fa-twitter"></i> Tamara Lelli<small>press@richarddeshantz.com</small></a></li>
               </ul>
             </div>       
             

@@ -1116,12 +1116,12 @@ class WP_Posts_List_Table extends WP_List_Table {
 				<em class="alignleft inline-edit-or">
 					<?php
 					/* translators: Between password field and private checkbox on post quick edit interface */
-					_e( '&ndash;OR&ndash;' );
+					echo __( '&ndash;OR&ndash;' );
 					?>
 				</em>
 				<label class="alignleft inline-edit-private">
 					<input type="checkbox" name="keep_private" value="private" />
-					<span class="checkbox-title"><?php _e( 'Private' ); ?></span>
+					<span class="checkbox-title"><?php echo __( 'Private' ); ?></span>
 				</label>
 			</div>
 
@@ -1331,7 +1331,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 		$post_formats = get_theme_support( 'post-formats' );
 
 		?>
-		<label class="alignleft">
+		<label class="alignleft" for="post_format">
 		<span class="title"><?php _ex( 'Format', 'post format' ); ?></span>
 		<select name="post_format">
 			<option value="-1"><?php _e( '&mdash; No Change &mdash;' ); ?></option>

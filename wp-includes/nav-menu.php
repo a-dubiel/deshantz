@@ -585,10 +585,7 @@ function wp_get_nav_menu_items( $menu, $args = array() ) {
 
 		if ( ! empty( $terms ) ) {
 			foreach ( array_keys($terms) as $taxonomy ) {
-				get_terms( $taxonomy, array(
-					'include' => $terms[ $taxonomy ],
-					'hierarchical' => false,
-				) );
+				get_terms($taxonomy, array('include' => $terms[$taxonomy]) );
 			}
 		}
 		unset($terms);

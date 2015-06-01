@@ -822,20 +822,18 @@ function wp_media_upload_handler() {
 }
 
 /**
- * Downloads an image from the specified URL and attaches it to a post.
+ * Download an image from the specified URL and attach it to a post.
  *
  * @since 2.6.0
- * @since 4.2.0 Introduced the `$return` parameter.
  *
- * @param string $file    The URL of the image to download.
- * @param int    $post_id The post ID the media is to be associated with.
- * @param string $desc    Optional. Description of the image.
- * @param string $return  Optional. Accepts 'html' (image tag html) or 'src' (URL). Default 'html'.
- * @return string|WP_Error Populated HTML img tag on success, WP_Error object otherwise.
+ * @param string $file The URL of the image to download
+ * @param int $post_id The post ID the media is to be associated with
+ * @param string $desc Optional. Description of the image
+ * @param string $return Optional. What to return: an image tag (default) or only the src.
+ * @return string|WP_Error Populated HTML img tag on success
  */
 function media_sideload_image( $file, $post_id, $desc = null, $return = 'html' ) {
 	if ( ! empty( $file ) ) {
-
 		// Set variables for storage, fix file filename for query strings.
 		preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches );
 		$file_array = array();
@@ -861,7 +859,7 @@ function media_sideload_image( $file, $post_id, $desc = null, $return = 'html' )
 		$src = wp_get_attachment_url( $id );
 	}
 
-	// Finally, check to make sure the file has been saved, then return the HTML.
+	// Finally check to make sure the file has been saved, then return the HTML.
 	if ( ! empty( $src ) ) {
 		if ( $return === 'src' ) {
 			return $src;
@@ -1052,14 +1050,6 @@ function image_link_input_fields($post, $url_type = '') {
 ";
 }
 
-/**
- * Output a textarea element for inputting an attachment caption.
- *
- * @since 3.4.0
- *
- * @param WP_Post $edit_post Attachment WP_Post object.
- * @return string HTML markup for the textarea element.
- */
 function wp_caption_input_textarea($edit_post) {
 	// Post data is already escaped.
 	$name = "attachments[{$edit_post->ID}][post_excerpt]";

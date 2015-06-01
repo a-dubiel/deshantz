@@ -524,11 +524,11 @@ function upgrade_all() {
 	if ( $wp_current_db_version < 29630 )
 		upgrade_400();
 
-	// Don't harsh my mellow. upgrade_430() must be called before
+	// Don't harsh my mellow. upgrade_422() must be called before
 	// upgrade_420() to catch bad comments prior to any auto-expansion of
 	// MySQL column widths.
-	if ( $wp_current_db_version < 32364 )
-		upgrade_430();
+	if ( $wp_current_db_version < 31534 )
+		upgrade_422();
 
 	if ( $wp_current_db_version < 31351 )
 		upgrade_420();
@@ -1442,14 +1442,22 @@ function upgrade_420() {
 }
 
 /**
- * Execute changes made in WordPress 4.3.0.
+ * Execute changes made in WordPress 4.2.1.
  *
- * @since 4.3.0
+ * @since 4.2.1
  */
-function upgrade_430() {
+function upgrade_421() {
+}
+
+/**
+ * Execute changes made in WordPress 4.2.2.
+ *
+ * @since 4.2.2
+ */
+function upgrade_422() {
 	global $wp_current_db_version, $wpdb;
 
-	if ( $wp_current_db_version < 32364 ) {
+	if ( $wp_current_db_version < 31534 ) {
 		$content_length = $wpdb->get_col_length( $wpdb->comments, 'comment_content' );
 
 		if ( is_wp_error( $content_length ) ) {
@@ -1602,8 +1610,8 @@ function upgrade_network() {
 		}
 	}
 
-	// 4.3
-	if ( $wp_current_db_version < 32378 && 'utf8mb4' === $wpdb->charset ) {
+	// 4.2.2
+	if ( $wp_current_db_version < 31535 && 'utf8mb4' === $wpdb->charset ) {
 		if ( ! ( defined( 'DO_NOT_UPGRADE_GLOBAL_TABLES' ) && DO_NOT_UPGRADE_GLOBAL_TABLES ) ) {
 			$upgrade = false;
 			$indexes = $wpdb->get_results( "SHOW INDEXES FROM $wpdb->signups" );
@@ -1749,17 +1757,6 @@ function maybe_convert_table_to_utf8mb4( $table ) {
 				return false;
 			}
 		}
-	}
-
-	$table_details = $wpdb->get_row( "SHOW TABLE STATUS LIKE '$table'" );
-	if ( ! $table_details ) {
-		return false;
-	}
-
-	list( $table_charset ) = explode( '_', $table_details->Collation );
-	$table_charset = strtolower( $table_charset );
-	if ( 'utf8mb4' === $table_charset ) {
-		return true;
 	}
 
 	return $wpdb->query( "ALTER TABLE $table CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" );

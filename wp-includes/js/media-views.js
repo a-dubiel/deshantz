@@ -503,7 +503,7 @@ Embed = wp.media.controller.State.extend({
 	},
 
 	// The amount of time used when debouncing the scan.
-	sensitivity: 400,
+	sensitivity: 200,
 
 	initialize: function(options) {
 		this.metadata = options.metadata;
@@ -4211,9 +4211,9 @@ module.exports = ButtonGroup;
  * @augments Backbone.View
  */
 var Button = wp.media.View.extend({
-	tagName:    'button',
+	tagName:    'a',
 	className:  'media-button',
-	attributes: { type: 'button' },
+	attributes: { href: '#' },
 
 	events: {
 		'click': 'click'
@@ -4533,6 +4533,8 @@ EmbedLink = wp.media.view.Settings.extend({
 	template:  wp.template('embed-link-settings'),
 
 	initialize: function() {
+		this.spinner = $('<span class="spinner" />');
+		this.$el.append( this.spinner[0] );
 		this.listenTo( this.model, 'change:url', this.updateoEmbed );
 	},
 
@@ -4543,56 +4545,36 @@ EmbedLink = wp.media.view.Settings.extend({
 		this.$('.embed-container').hide().find('.embed-preview').empty();
 		this.$( '.setting' ).hide();
 
-		// only proceed with embed if the field contains more than 11 characters
-		// Example: http://a.io is 11 chars
-		if ( url && ( url.length < 11 || ! url.match(/^http(s)?:\/\//) ) ) {
+		// only proceed with embed if the field contains more than 6 characters
+		if ( url && url.length < 6 ) {
 			return;
 		}
 
 		this.fetch();
-	}, wp.media.controller.Embed.sensitivity ),
+	}, 600 ),
 
 	fetch: function() {
-		var embed;
-
 		// check if they haven't typed in 500 ms
 		if ( $('#embed-url-field').val() !== this.model.get('url') ) {
 			return;
 		}
 
-		if ( this.dfd && 'pending' === this.dfd.state() ) {
-			this.dfd.abort();
-		}
-
-		embed = new wp.shortcode({
-			tag: 'embed',
-			attrs: _.pick( this.model.attributes, [ 'width', 'height', 'src' ] ),
-			content: this.model.get('url')
-		});
-
-		this.dfd = $.ajax({
-			type:    'POST',
-			url:     wp.ajax.settings.url,
-			context: this,
-			data:    {
-				action: 'parse-embed',
+		wp.ajax.send( 'parse-embed', {
+			data : {
 				post_ID: wp.media.view.settings.post.id,
-				shortcode: embed.string()
+				shortcode: '[embed]' + this.model.get('url') + '[/embed]'
 			}
-		})
-			.done( this.renderoEmbed )
-			.fail( this.renderFail );
+		} )
+			.done( _.bind( this.renderoEmbed, this ) )
+			.fail( _.bind( this.renderFail, this ) );
 	},
 
-	renderFail: function ( response, status ) {
-		if ( 'abort' === status ) {
-			return;
-		}
+	renderFail: function () {
 		this.$( '.link-text' ).show();
 	},
 
 	renderoEmbed: function( response ) {
-		var html = ( response && response.data && response.data.body ) || '';
+		var html = ( response && response.body ) || '';
 
 		if ( html ) {
 			this.$('.embed-container').show().find('.embed-preview').html( html );

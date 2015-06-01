@@ -1190,19 +1190,29 @@ div.wpcf7 .placeheld {
  ul {
   display:block;
   padding:0;
-  list-style-type: none;
-  width:170px;
+  list-style-type: none; 
   margin:20px 0;
+  }
 
-  .contact-person a {
+  li {
+    width:250px;
+  }
+}
+
+.main-contact .contact-person a {
     text-transform: none;
     letter-spacing: normal;
 
+    line-height: 1rem;
+    
+    .fa {
+      float:left;
+    }
     small {
       display:block;
+      font-size:100%;
     }
   }
-  }}
 
 
 
