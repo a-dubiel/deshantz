@@ -172,8 +172,8 @@ function html5blank_header_scripts()
             // Modernizr
             wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
-            // Pace
-           // wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0');
+            // Isotope
+            wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0');
 
             // Instafeed
             wp_register_script('instafeed', get_template_directory_uri() . '/bower_components/instafeed.js/instafeed.min.js', array(), '1.3.2');
@@ -187,7 +187,7 @@ function html5blank_header_scripts()
                 get_template_directory_uri() . '/js/scripts.js',
                 array(
                     'pace',
-                   // 'isotope',
+                    'isotope',
                     'instafeed',
                     'conditionizr',
                     'modernizr',

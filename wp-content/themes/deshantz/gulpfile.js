@@ -17,6 +17,9 @@ var gulp = require( "gulp" ),
 		"src/bower_components/instafeed.js/instafeed.js",
 		/** pace */
 		"src/bower_components/pace/pace.js",
+		/** pace */
+		"src/bower_components/isotope/dist/isotope.pkgd.min.js",
+		
 		/** Page scripts */
 		"src/js/scripts.js"
 	],

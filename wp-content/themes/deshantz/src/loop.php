@@ -50,7 +50,7 @@
 
 <?php endif; ?>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
+
 <script>
   $('.posts-container').isotope({
     // options
