@@ -87,11 +87,11 @@ function hero_image()
     } 
     elseif(is_home()) {
 
-        $latest_post = get_posts( array('showposts' => 1, 'ignore_sticky_posts' => true) );
-        foreach ( $latest_post as $the_post ) {
-            setup_postdata( $the_post );
-            if(has_post_thumbnail()){
-                $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_post->ID, 'hero-image'));
+        $latest_post = wp_get_recent_posts( array('showposts' => 1, 'ignore_sticky_posts' => true ), ARRAY_A ); 
+        foreach ( $latest_post as $the_latest_post ) {
+         
+            if(has_post_thumbnail($the_latest_post['ID'])){
+                $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_latest_post['ID'], 'hero-image'));
             }
             else {
                 $image_src = get_template_directory_uri() . '/img/bg/default.jpg';

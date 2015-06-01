@@ -1,7 +1,8 @@
 <div class="container">
 	<div class="posts-container">
 		<div class="grid-sizer"></div>
-		<?php if(is_home()) { query_posts('offset=1'); } ?> 
+		<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+		<?php if(is_home()) { query_posts('offset=1&paged=' . $paged); } ?> 
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 			<?php 
 			$thumb_id = get_post_thumbnail_id($post->ID);

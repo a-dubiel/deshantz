@@ -3300,3 +3300,7 @@ div.wpcf7 .placeheld {
   display: block;
   font-size: 100%;
 }
+
+.the-content a {
+  text-decoration: underline;
+}

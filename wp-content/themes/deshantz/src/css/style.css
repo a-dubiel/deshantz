@@ -3297,4 +3297,8 @@ div.wpcf7 .placeheld {
   font-size: 100%;
 }
 
+.the-content a {
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=style.css.map */

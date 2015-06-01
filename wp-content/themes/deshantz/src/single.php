@@ -30,7 +30,9 @@
 			<div class="container">
 				<div class="row">
         	<div class="col-xs-12 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-        			<?php the_content(); // Dynamic Content ?>
+        			<div class="the-content">
+                <?php the_content(); // Dynamic Content ?>
+              </div>
 
         			<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
 
