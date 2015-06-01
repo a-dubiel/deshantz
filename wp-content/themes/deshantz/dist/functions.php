@@ -32,6 +32,7 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
     add_image_size('hero-image', 1400, '', true);
+    add_image_size('post-thumbnail', 400, 200, true);
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(
     'default-color' => 'FFF',
@@ -39,7 +40,7 @@ if (function_exists('add_theme_support'))
     ));*/
 
     //remove auto p tags
-    remove_filter( 'the_content', 'wpautop' );
+   //remove_filter( 'the_content', 'wpautop' );
 
     // Add Support for Custom Header - Uncomment below if you're going to use
     /*add_theme_support('custom-header', array(
@@ -71,16 +72,39 @@ function hero_image()
     global $post; 
     $post_id =  $post->ID;  
 
-    if(has_post_thumbnail($post_id)) {
+    if(is_404()) {
+        $image_src = get_template_directory_uri() . '/img/bg/not-found.jpg';
+    }
+    elseif(is_search()) {
+       $image_src = get_template_directory_uri() . '/img/bg/not-found.jpg'; 
+    }
+    elseif(is_archive()) {
+         $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
+    }
+    elseif(has_post_thumbnail($post_id)) {
         $image_src = wp_get_attachment_url(get_post_thumbnail_id($post_id, 'hero-image'));
+
     } 
+    elseif(is_home()) {
+
+        $latest_post = wp_get_recent_posts( array('showposts' => 1, 'ignore_sticky_posts' => true ), ARRAY_A ); 
+        foreach ( $latest_post as $the_latest_post ) {
+         
+            if(has_post_thumbnail($the_latest_post['ID'])){
+                $image_src = wp_get_attachment_url(get_post_thumbnail_id($the_latest_post['ID'], 'hero-image'));
+            }
+            else {
+                $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
+            }
+            
+        }  
+        wp_reset_postdata();
+    }
     else {
-        $image_src = get_template_directory_uri() . '/img/bg/home.jpg';
+        $image_src = get_template_directory_uri() . '/img/bg/default.jpg';
     }
 
     return $image_src;
-
-
 }
 
 // HTML5 Blank navigation
@@ -101,7 +125,7 @@ function nav_main()
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
+        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
         'depth'           => 0,
         'walker'          => ''
         )
@@ -149,10 +173,13 @@ function html5blank_header_scripts()
             wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
             // Pace
-            wp_register_script('pace', get_template_directory_uri() . '/bower_components/pace/pace.min.js', array(), '1.0.2');
+           // wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0');
 
             // Instafeed
             wp_register_script('instafeed', get_template_directory_uri() . '/bower_components/instafeed.js/instafeed.min.js', array(), '1.3.2');
+
+            // Pace
+            wp_register_script('pace', get_template_directory_uri() . '/bower_components/pace/pace.min.js', array(), '1.0.2');
 
             // Custom scripts
             wp_register_script(
@@ -160,6 +187,7 @@ function html5blank_header_scripts()
                 get_template_directory_uri() . '/js/scripts.js',
                 array(
                     'pace',
+                   // 'isotope',
                     'instafeed',
                     'conditionizr',
                     'modernizr',
@@ -402,31 +430,37 @@ function html5blankcomments($comment, $args, $depth)
         $add_below = 'div-comment';
     }
 ?>
-    <!-- heads up: starting < for the html tag (li or div) in the next line: -->
+    
     <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
     <?php if ( 'div' != $args['style'] ) : ?>
     <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
     <?php endif; ?>
-    <div class="comment-author vcard">
-    <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-    <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+    <div class="comment-avatar">
+        <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, 50 ); ?>
     </div>
-<?php if ($comment->comment_approved == '0') : ?>
-    <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-    <br />
-<?php endif; ?>
-
-    <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+    <div class="comment-content">
+    <div class="comment-author vcard"><?php printf(__('<cite>%s</cite>'), get_comment_author_link()) ?></div>
+    <div class="comment-meta commentmetadata"><a class="subtitle" href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
         <?php
-            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
+            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('Edit'),'  ','' );
         ?>
     </div>
+        <div class="comment-text">
+            <?php if ($comment->comment_approved == '0') : ?>
+                <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+                <br />
+            <?php endif; ?>
 
-    <?php comment_text() ?>
+            <?php comment_text() ?>
 
-    <div class="reply">
-    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            <div class="reply">
+            <?php comment_reply_link(array_merge( $args, array('class' => 'read-more-link', 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            </div>
+
+        </div>
     </div>
+
+
     <?php if ( 'div' != $args['style'] ) : ?>
     </div>
     <?php endif; ?>
@@ -442,7 +476,7 @@ add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditi
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
-add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
+//add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -473,6 +507,8 @@ add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from 
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
+add_filter( 'use_default_gallery_style', '__return_false' );
+
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
@@ -484,47 +520,6 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
 
-/*------------------------------------*\
-    Custom Post Types
-\*------------------------------------*/
-
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-function create_post_type_html5()
-{
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
 
 /*------------------------------------*\
     ShortCode Functions
@@ -541,3 +536,109 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 {
     return '<h2>' . $content . '</h2>';
 }
+
+/*------------------------------------*\
+    Meta Box
+\*------------------------------------*/
+
+/**
+ * Adds a box to the main column on the Post and Page edit screens.
+ */ 
+function myplugin_add_meta_box() {
+
+        add_meta_box(
+            'myplugin_sectionid',
+            __( 'Hero Section', 'myplugin_textdomain' ),
+            'myplugin_meta_box_callback',
+            'page'
+        );
+
+}
+add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+
+/**
+ * Prints the box content.
+ * 
+ * @param WP_Post $post The object for the current post/page.
+ */
+function myplugin_meta_box_callback( $post ) {
+
+    // Add a nonce field so we can check for it later.
+    wp_nonce_field( 'myplugin_meta_box', 'myplugin_meta_box_nonce' );
+
+    /*
+     * Use get_post_meta() to retrieve an existing value
+     * from the database and use the value for the form.
+     */
+    $title = get_post_meta( $post->ID, '_hero_title', true );
+    $subtitle = get_post_meta( $post->ID, '_hero_subtitle', true );
+
+    echo '<label for="hero_title">';
+    _e( 'Title', 'myplugin_textdomain' );
+    echo '</label><br />';
+    echo '<input type="text" id="hero_title" name="hero_title" value="' . esc_attr( $title ) . '" size="60" /><br />';
+    echo '<label for="hero_subtitle">';
+    _e( 'Subtitle', 'myplugin_textdomain' );
+    echo '</label><br />';
+    echo '<textarea id="hero_subtitle" name="hero_subtitle" style="min-width:75%; min-height: 200px">';
+    echo esc_attr( $subtitle );
+    echo '</textarea>';
+}
+
+/**
+ * When the post is saved, saves our custom data.
+ *
+ * @param int $post_id The ID of the post being saved.
+ */
+function myplugin_save_meta_box_data( $post_id ) {
+
+    /*
+     * We need to verify this came from our screen and with proper authorization,
+     * because the save_post action can be triggered at other times.
+     */
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['myplugin_meta_box_nonce'] ) ) {
+        return;
+    }
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $_POST['myplugin_meta_box_nonce'], 'myplugin_meta_box' ) ) {
+        return;
+    }
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Check the user's permissions.
+    if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ) {
+            return;
+        }
+
+    } else {
+
+        if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+        }
+    }
+
+    /* OK, it's safe for us to save the data now. */
+    
+    // Make sure that it is set.
+    if ( ! isset( $_POST['hero_subtitle']) && ! isset( $_POST['hero_title'] ) ) {
+        return;
+    }
+
+    // Sanitize user input.
+    $hero_title = sanitize_text_field( $_POST['hero_title'] );
+    $hero_subtitle = sanitize_text_field( $_POST['hero_subtitle'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, '_hero_title', $hero_title);
+    update_post_meta( $post_id, '_hero_subtitle', $hero_subtitle );
+}
+add_action( 'save_post', 'myplugin_save_meta_box_data' );

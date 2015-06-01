@@ -5,12 +5,28 @@
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' : '; } ?><?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-        <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
-        <link href="<?php echo get_template_directory_uri(); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri(); ?>/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo get_template_directory_uri(); ?>/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/img/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#333333">
+    <meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/img/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#333333">
 
 		<?php wp_head(); ?>
 		<script>
@@ -61,9 +77,54 @@
             <!-- intro -->
             <?php if(is_front_page()): ?>
                 <h1 class="home-logo"><img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Richard Deshantz Restaurant Group"></h1>
-            
+            <?php elseif(is_page()): ?>
+                  <?php 
+                    $title = get_post_meta( get_the_ID(), '_hero_title', true ); 
+                    $subtitle = get_post_meta( get_the_ID(), '_hero_subtitle', true );
+                  ?>
+
+                  <?php if($title): ?>
+                      <h1><?php echo $title ?></h1>
+                      <p><?php echo $subtitle ?></p>
+                  <?php else: ?>
+                      <h1><?php the_title(); ?></h1>
+                  <?php endif; ?>
+
+            <?php elseif(is_home()): ?>
+                <?php
+                  $latest_post = new WP_Query( array('showposts' => 1, 'ignore_sticky_posts' => true) ); 
+                  while ($latest_post->have_posts()) : $latest_post->the_post(); ?>
+                   
+                   <h1>From The Blog</h1>
+                   <div class="post-data">
+                     <time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
+                     <p><?php the_title(); ?></p>
+                     <a href="<?php the_permalink() ?>" class="read-more-link">Read more</a>
+                   </div>
+
+                 <?php endwhile; wp_reset_postdata(); ?>
+            <?php elseif(is_archive()): ?>
+               <h1><?php single_cat_title();?><?php single_month_title();?></h1>
+               <p>Posts from category</p>
+            <?php elseif(is_single()): ?>
+                <h3 class="h1">From The Blog</h3>
+                  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+                   <div class="post-data">
+                     <time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
+                     <h1 class="post-data-title" title="<?php the_title_attribute(); ?>"><?php the_title() ?></h1>
+                   </div>
+                    <?php endwhile; endif; ?>
+            <?php elseif(is_404()): ?>
+                <h1>Ooops!</h1>
+                <div class="post-data">
+                  <p>Looks like this page does not exist.</p>
+                  <a href="<?php echo site_url() ?>" class="read-more-link">Go back home</a>
+                </div>
+            <?php elseif(is_search()): ?>
+                <h1>Search Results</h1>
+                <p><?php echo sprintf( __( 'We got %s results for ', 'html5blank' ), $wp_query->found_posts ); echo get_search_query(); ?></p>
             <?php else: ?>
-              nie kurwa
+                pusto
             <?php endif; ?>
             <!-- /intro -->
             </div>

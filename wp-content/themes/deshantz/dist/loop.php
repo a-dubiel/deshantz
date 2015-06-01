@@ -1,47 +1,63 @@
-<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+<div class="container">
+	<div class="posts-container">
+		<div class="grid-sizer"></div>
+		<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+		<?php if(is_home()) { query_posts('offset=1&paged=' . $paged); } ?> 
+		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+			<?php 
+			$thumb_id = get_post_thumbnail_id($post->ID);
+			if(strlen($thumb_id) !== 0) {
+				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'post-thumbnail', true);
+				$thumb_url = $thumb_url_array[0];
+			}
 
-	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			$category = get_the_category($post->ID); 
+			?>
 
-		<!-- post thumbnail -->
-		<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-				<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-			</a>
-		<?php endif; ?>
-		<!-- /post thumbnail -->
+			<!-- article -->
+			<div class="post-container">
+				<?php  ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('post-excerpt'); ?>>
+					<h6 class="subtitle post-category"><?php echo $category[0]->cat_name; ?></h6> 
+					<?php if(has_post_thumbnail() && isset($thumb_url)): ?>
+						<div class="post-thumbnail">
+							<a href="<?php the_permalink() ?>">
+								<img src="<?php echo $thumb_url ?>" />
+							</a>
+						</div>
+					<?php endif; ?>
+					<div class="post-content <?php echo (has_post_thumbnail() && isset($thumb_url)) ? '' : 'no-thumbnail'; ?>">
+						<h3 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h3>
+						<time class="subtitle" datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>"><?php the_date() ?></time>
+						<p><?php echo substr(strip_tags($post->post_content), 0, 200);?>...</p>
+						<a class="read-more-link" href="<?php the_permalink() ?>">Read more</a>
+					</div>
+				</article>
+			</div>
+			<!-- /article -->
 
-		<!-- post title -->
-		<h2>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-		</h2>
-		<!-- /post title -->
-
-		<!-- post details -->
-		<span class="date">
-			<time datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>">
-				<?php the_date(); ?> <?php the_time(); ?>
-			</time>
-		</span>
-		<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-		<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-		<!-- /post details -->
-
-		<?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
-
-		<?php edit_post_link(); ?>
-
-	</article>
-	<!-- /article -->
-
-<?php endwhile; ?>
+		<?php endwhile; ?>
+	</div>
+</div>
 
 <?php else: ?>
 
 	<!-- article -->
-	<article>
+	<article class="container">
 		<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
 	</article>
 	<!-- /article -->
 
 <?php endif; ?>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
+<script>
+  $('.posts-container').isotope({
+    // options
+    itemSelector: '.post-container',
+    percentPosition: true,
+    masonry: {
+      columnWidth: '.grid-sizer'
+    }
+  });
+</script>
