@@ -148,6 +148,10 @@ button::-moz-focus-inner {
   padding: 0;
 }
 
+textarea {
+  -webkit-appearance: none;
+}
+
 /*! Typebase.less v0.1.0 | MIT License */
 /* Setup */
 html {
@@ -1525,7 +1529,6 @@ input:-ms-input-placeholder {
  */
 .header {
   background-size: cover;
-  background-attachment: fixed;
   background-position: center;
   padding-top: 20px;
   width: 100%;
@@ -1545,6 +1548,7 @@ input:-ms-input-placeholder {
 @media (min-width: 768px) {
   .header {
     padding-top: 50px;
+    background-attachment: fixed;
   }
 }
 
@@ -1767,7 +1771,13 @@ input:-ms-input-placeholder {
 .nav-footer ul li {
   list-style-type: none;
   display: inline;
-  padding: 0 15px;
+  padding: 0 5px;
+}
+@media (min-width: 768px) {
+  .nav-main ul li,
+  .nav-footer ul li {
+    padding: 0 15px;
+  }
 }
 .nav-main ul li.current-menu-item a, .nav-main ul li.current_page_parent a,
 .nav-footer ul li.current-menu-item a,
@@ -3299,6 +3309,10 @@ div.wpcf7 .placeheld {
 
 .the-content a {
   text-decoration: underline;
+}
+
+.add-bottom {
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

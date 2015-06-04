@@ -8,7 +8,7 @@
     initInstafeed();
     scrollFade($(".intro"), 0.5, 0);
     checkHash();
-    //initIsotope();
+    initIsotope();
 
     $('.js-accolades').on('click', function(e){ 
       $(this).parents('.box-restaurant-big').toggleClass('flip'); 
@@ -80,7 +80,7 @@
         clientId: "a0660f0c72874245ac45bb6974520a07",
         userId: 1463755023,
         accessToken: "566414879.467ede5.249c4e8f2db140d897deab5c0e2a2b6b",
-        limit: 3,
+        limit: 3, 
         sortBy: "most-recent",
         resolution: "low_resolution",
         template: '<a href="{{link}}" title="View on Instagram" target="_blank" class="instagram-tile" style="background-image: url({{image}})"><div class="instagram-overlay"><span><i class="fa fa-heart"></i> {{likes}}</span></div>'
@@ -88,6 +88,20 @@
       feed.run();
     }
   }  
+
+  function initIsotope() {
+
+     if($('.posts-container').length > 0) {
+      $('.posts-container').isotope({
+        // options
+        itemSelector: '.post-container',
+        percentPosition: true,
+        masonry: {
+          columnWidth: '.grid-sizer'
+        }
+      });
+     }
+  }
 
 
   function scrollFade($element, friction, offset) {

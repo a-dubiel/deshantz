@@ -12,7 +12,7 @@
                     <span class="comment-link"><b><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Add Comment', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></b> <i class="fa fa-comment"></i></span>
                     <span  class="share-links"><b>Share</b> <a href="#" data-vendor="fb" data-url="<?php the_permalink() ?>"><i class="fa fa-facebook"></i></a> <a href="#" data-vendor="tw" data-url="<?php the_permalink() ?>"><i class="fa fa-twitter"></i></a></span>
                   </div>
-                  <div class="pull-left">
+                  <div class="pull-left hidden-xs">
                     <span class="author">By <b><?php the_author(); ?></b></span>
                   </div>
           </div>

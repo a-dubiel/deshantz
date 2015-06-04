@@ -27,7 +27,11 @@
   li {
     list-style-type: none;
     display: inline;   
-    padding:0 15px;
+    padding:0 5px;
+
+    @media (min-width: $screen-sm) {
+       padding:0 15px;
+    }
 
     &.current-menu-item a,
     &.current_page_parent a {
