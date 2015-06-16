@@ -49,15 +49,3 @@
 	<!-- /article -->
 
 <?php endif; ?>
-
-
-<script>
-  $('.posts-container').isotope({
-    // options
-    itemSelector: '.post-container',
-    percentPosition: true,
-    masonry: {
-      columnWidth: '.grid-sizer'
-    }
-  });
-</script>

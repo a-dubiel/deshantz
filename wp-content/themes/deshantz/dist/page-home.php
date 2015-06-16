@@ -93,11 +93,11 @@
     <li><a href="http://www.esquire.com/style/mens-fashion/advertorial/a29285/style-across-america-pittsburgh-2014/" target="_blank" class="logo-esquire">Esquire</a></li>
     <li><a href="http://www.foodandwine.com/slideshows/best-gastropubs-in-the-us/25" target="_blank" class="logo-foodwine">Food and Wine</a></li>
     <li><a href="http://www.huffingtonpost.com/malerie-yolencohen/top-ten-movie-locations-t_b_6354924.html" target="_blank" class="logo-huffington">Huffington Post</a></li>
-    <li><a href="http://www.pittsburghmagazine.com/Best-of-the-Burgh-Blogs/The-412/December-2014/Foodie-Alert-James-Beard-Celebrity-Chef-Tour-Coming-to-Pittsburgh/" target="_blank" class="logo-pittsburghmag">Pittsburgh Mag</a></li>
+    <li><a href="http://www.pittsburghmagazine.com/Pittsburgh-Magazine/June-2014/Best-in-Class-Our-2014-Chefs-of-the-Year/" target="_blank" class="logo-pittsburghmag">Pittsburgh Mag</a></li>
     <li><a href="https://www.yahoo.com/travel/bp/best-bars-u-mix-drinks-bowling-disco-more-205643806.html" target="_blank" class="logo-yahoo">Yahoo Travel</a></li>
     <li><a href="http://www.thrillist.com/eat/pittsburgh/best-restaurants-in-pittsburgh" target="_blank" class="logo-thrillist">Thrillist</a></li>
     <li><a href="http://www.travelchannel.com/shows/food-paradise/video/meat-and-potatoes" target="_blank" class="logo-travel">Travel Channel</a></li>
-    <li><a href="http://www.triblive.com/aande/diningout/7333602-74/chef-severino-restaurant#axzz3TQvrFrSs" target="_blank" class="logo-trib">Trib Live</a></li>
+    <li><a href="http://triblive.com/aande/diningout/6106674-74/butcher-rye-downtown#axzz3TQvrFrSs" target="_blank" class="logo-trib">Trib Live</a></li>
     <li><a href="http://www.experience.usatoday.com/food-and-wine/story/best-of-food-and-wine/2014/03/11/small-cities-big-food-scenes/6187081/" target="_blank" class="logo-usatoday">USA Today Travel</a></li>
   </ul>
 </section>

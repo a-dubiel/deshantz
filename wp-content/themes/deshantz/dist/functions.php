@@ -125,7 +125,7 @@ function nav_main()
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
+        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li class="hidden-xs"><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li class="hidden-xs"><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li class="hidden-xs"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
         'depth'           => 0,
         'walker'          => ''
         )
@@ -173,7 +173,7 @@ function html5blank_header_scripts()
             wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
             // Isotope
-            wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0');
+            wp_register_script('isotope', get_template_directory_uri() . '/bower_components/isotope/dist/isotope.pkgd.min.js', array(), '2.2.0', true);
 
             // Instafeed
             wp_register_script('instafeed', get_template_directory_uri() . '/bower_components/instafeed.js/instafeed.min.js', array(), '1.3.2');
@@ -181,21 +181,11 @@ function html5blank_header_scripts()
             // Pace
             wp_register_script('pace', get_template_directory_uri() . '/bower_components/pace/pace.min.js', array(), '1.0.2');
 
-            // Custom scripts
-            wp_register_script(
-                'html5blankscripts',
-                get_template_directory_uri() . '/js/scripts.js',
-                array(
-                    'pace',
-                    'isotope',
-                    'instafeed',
-                    'conditionizr',
-                    'modernizr',
-                    'jquery'),
-                '1.0.0');
+            // Scripts
+            wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.2', true);
 
-            // Enqueue Scripts
-            wp_enqueue_script('html5blankscripts');
+            wp_enqueue_script(array('pace', 'conditionizr', 'modernizr', 'jquery', 'instafeed', 'isotope', 'scripts'));
+
 
         // If production
         } else {
