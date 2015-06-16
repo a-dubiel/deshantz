@@ -125,7 +125,7 @@ function nav_main()
         'after'           => '',
         'link_before'     => '',
         'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li class="hidden-xs"><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li class="hidden-xs"><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li class="hidden-xs"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
+        'items_wrap'      => '<ul>%3$s<li class="divider"></li><li class="hidden-xs"><a href="http://www.twitter.com/richarddeshantz" target="_blank"><i class="fa fa-twitter"></i></a></li><li class="hidden-xs"><a href="https://www.instagram.com/richard_deshantz" target="_blank"><i class="fa fa-instagram"></i></a></li><li class="hidden-xs"><a href="https://www.facebook.com/pages/Richard-DeShantz/481850788647592" target="_blank"><i class="fa fa-facebook"></i></a></li></ul>',
         'depth'           => 0,
         'walker'          => ''
         )

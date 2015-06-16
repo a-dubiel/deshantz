@@ -40,7 +40,7 @@
       <p class="intro-paragraph"><?php echo substr(strip_tags($post->post_content), 0, 200);?>...</p>
       <footer class="box-author-meta">
         <?php if(get_the_author_meta('email') == 'lelli.tamara@gmail.com'): ?>
-          <img src="<?php echo get_template_directory_uri(); ?>/img/rick-avatar.png" class="avatar" alt="Rick Deshantz" />
+          <img src="<?php echo get_template_directory_uri(); ?>/img/rick-avatar.png" class="avatar" alt="Rick DeShantz" />
         <?php else: ?>
           <?php echo get_avatar(get_the_author_meta('email'), 50) ?>
         <?php endif; ?>
@@ -81,12 +81,7 @@
 <!-- /social -->
 
 <!-- accolades -->
-<section class="home-section home-section-padding text-center">
-  <header class="section-header text-center">
-    <small class="subtitle">Restaurants</small>
-    <h3 class="title">Here is a nice and inviting headline about Rick’s restaurants and the accolades.</h3>
-  </header>
-  
+<section class="home-section home-section-padding text-center">  
   <h6 class="subtitle text-center">As featured on</h6>
   <ul class="logo-list">
     <li><a href="http://www.cookingchanneltv.com/shows/chucks-eat-the-street/300/episode-313.html" target="_blank" class="logo-cooking">Cooking Channel</a></li>
@@ -105,35 +100,31 @@
 
 <!-- restaurants -->
 <section class="home-section">
-  
+
+    <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/meat-and-potatoes.jpg')">
+      <div class="box-restaurant-container">
+        <div class="box-restaurant-content">
+          <h4 class="title">Meat &amp; Potatoes</h4>
+          <p class="subtitle">Pittsburgh, PA</p>
+          <a class="read-more-link" href="<?php echo site_url() ?>/restaurants#meat-and-potatoes">More Info</a>
+        </div>
+      </div>
+    </div> 
 
     <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/butcher-and-rye.jpg')">
       <div class="box-restaurant-container">
         <div class="box-restaurant-content">
-          <h4 class="title">Butcher and Rye</h4>
+          <h4 class="title">Butcher and the Rye</h4>
           <p class="subtitle">Pittsburgh, PA</p>
           <a class="read-more-link" href="<?php echo site_url() ?>/restaurants#butcher-and-rye">More Info</a>
         </div>
       </div>
     </div>
-  
-
-    <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/meat-and-potatoes.jpg')">
-      <div class="box-restaurant-container">
-        <div class="box-restaurant-content">
-          <h4 class="title">Meat and Potatoes</h4>
-          <p class="subtitle">Pittsburgh, PA</p>
-          <a class="read-more-link" href="<?php echo site_url() ?>/restaurants#meat-and-potatoes">More Info</a>
-        </div>
-      </div>
-    </div>
-
-
 
     <div class="box-restaurant" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/tako.jpg')">
       <div class="box-restaurant-container">
         <div class="box-restaurant-content">
-          <h4 class="title">Täko</h4>
+          <h4 class="title">täk<small>ō</small></h4>
           <p class="subtitle">Pittsburgh, PA</p>
           <a class="read-more-link" href="<?php echo site_url() ?>/restaurants#tako">More Info</a>
         </div>
